@@ -13,12 +13,12 @@
 
 ## 调试
 
-If you encounter an error while using your forum, the first thing to do is enable debug mode. Simply open up config.php with a text editor, and change the `debug` value to `true`. This will cause Flarum to show detailed error messages, giving you an insight into what's going wrong.
+当你在使用论坛的过程中发生错误，要做的第一件事就是开启调试模式。使用文本编辑器打开 `config.php` 文件，将 `debug` 的值修改为 `true`。这样，当 Flarum 发生任何错误时，将会显示详细的错误消息。
 
-If you're still getting a blank page, try setting the `display_errors` option to `On` in your php.ini configuration. Alternatively, you can add the following line of code to the top of `flarum/bootstrap.php`:
+如果你访问网站时看到一个空白页面，将 PHP 配置文件 php.ini 的 `display_errors` 选项设置为 `On`。 或者，将以下代码添加到 `flarum/bootstrap.php` 文件的开头：
 
 ```php
 ini_set('display_errors', 'On');
 ```
 
-*Be sure to revert these changes once the error is fixed!*
+**注：当错误修正后，一定要恢复这些选项！**
