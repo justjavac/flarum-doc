@@ -26,7 +26,7 @@ Flarum 使用的是BEM风格CSS类的命名规则
 
     .ComponentName-child--modifier
     
-该组件名称组成部分应该与如果存在的JavaScript组件的名称保持一致。
+该组件名称组成部分应该与存在的JavaScript组件的名称保持一致。
 
 ## 模板
 
