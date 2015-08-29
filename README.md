@@ -10,13 +10,13 @@ QQ 交流群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=ce1
 
 ## Github
 
-https://github.com/justjavac/flarum-doc
+本文档源码托管在：https://github.com/justjavac/flarum-doc
 
 ## 在线阅读
 
 GitBook https://www.gitbook.com/book/justjavac/flarum/details
 
-## 贡献者
+## 贡献者（及翻译进度）
 
 * 前言
   * 介紹 [@justjavac](https://github.com/justjavac)
