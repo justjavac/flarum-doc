@@ -8,8 +8,8 @@
 
 ### 已知的问题
 
-* Currently the installer does not validate input correctly; if you enter an invalid admin username, the installer will silently fail. Usernames must only contain letters, numbers, dashes, and underscores.
-* The installer will crash if the `flarum/storage/framework/views` directory is not writable. Make sure PHP can write to this directory.
+* 目前安装程序没有进行输入验证，如果您输入了无效的管理用户名，安装程序将默默地失败。用户名只能包含字母、数字、破折号、下划线。
+* 如果 `flarum/storage/framework/views` 目录没有写入的权限，安装程序将崩溃。确保 PHP 对此目录有写权限。
 
 ## 调试
 
