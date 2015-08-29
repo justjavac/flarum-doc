@@ -1,10 +1,10 @@
 # 主题
 
-Flarum compiles LESS files into a CSS file which is then served as part of the client. For per-forum customizations can easily add your own LESS/CSS to the mix in the Administrator CP Appearance section by clicking on "Edit Custom CSS".
+Flarum将编译LESS文件到CSS文件，然后担任客户端的一部分，关于论坛的定制很容易，在管理员面板外观部分可以通过点击“编辑自定义CSS”添加你自己的LESS/CSS。
 
-## Compiling Assets
+## 编译资源
 
-The extension skeleton includes an empty `less/extension.less` file where you can put any custom LESS/CSS styles. This file is registered using the `BuildClientView` event:
+扩展框架包含一个空的`LESS/extension.less`文件，你可以把任何自定义的LESS/CSS样式写入这个文件。这个文件使用的是`BuildClientView`事件注册：
 
 ```php
 use Flarum\Events\BuildClientView;
@@ -16,22 +16,21 @@ $events->listen(BuildClientView::class, function (BuildClientView $event) {
 });
 ```
 
-## Variables
+## 变量
 
-There are a number of LESS variables that define the theme colors and other values used throughout the LESS. They are listed in [variables.less](https://github.com/flarum/core/blob/master/less/lib/variables.less). You should use these variables to implement the forum's color scheme into your extension.
+有许多LESS定义主题颜色和其他的值贯穿整个LESS的变量。它们被列在[variables.less](https://github.com/flarum/core/blob/master/less/lib/variables.less)。你应该使用这些变量来实现论坛的配色方案到您的扩展。
 
-## Conventions
+## 规范
 
-Flarum uses a BEM-style naming convention for CSS classes:
+Flarum 使用的是BEM风格的CSS类的命名规则
 
     .ComponentName-child--modifier
     
-The ComponentName part should be consistent with the name of the JavaScript component if one exists.
+该组件名称组成部分应该与如果存在的JavaScript组件的名称保持一致。
 
-## Templates
+## 模板
 
-You can use a custom template for the forum client layout if needed. (The default one is located [here](https://github.com/flarum/core/blob/master/views/forum.blade.php).) Your custom template must include elements with all of the same IDs.
-
+如果需要，您可以使用自定义模板更改论坛布局。(默认的一个是位于[这里](https://github.com/flarum/core/blob/master/views/forum.blade.php)。）您的自定义模板必须包含所有相同的ID元素。
 ```php
 use Flarum\Events\BuildClientView;
 use Flarum\Forum\Actions\ClientAction as ForumClientAction;
