@@ -22,3 +22,5 @@ ini_set('display_errors', 'On');
 ```
 
 **注：当错误修正后，一定要恢复这些选项！**
+
+> 译者：[@justjavac](https://github.com/justjavac)
