@@ -23,6 +23,7 @@ Flarum被设计成轻量级和高扩展的。事实上，Flarum的大部分特�
 在你构建扩展之前，你一定得先理解Flarum如何运作。本节旨在快速浏览组成Flarum的各部分。
 
 从顶层来看，Flarum有3层架构：
+
 * **领域(domain)**层，代表所有Flarum数据结构和领域逻辑。
 * **接口(API)**层,以一种标准格式(如JSON API)暴露这些数据结构。
 * **客户(client)**层,提供默认网络用户来使用接口。
@@ -40,6 +41,8 @@ Flarum被设计成轻量级和高扩展的。事实上，Flarum的大部分特�
 领域层代表着**管理论坛数据和为论坛数据建模**。这包括用数据库存储数据、提供程序命令去修改数据和控制相关逻辑(例如当一个用户发帖时，我们在用户发帖数上加一)。
 
 领域层使用**面向对象的PHP**来构建，位于`Flarum\Core`这个名称空间里.领域层的每个实体(讨论、帖子等)都有自己的子名称空间。
+
+领域层依赖Laravel的[数据库组件](http://laravel.com/docs/5.1/database)和[Eloquent ORM](http://laravel.com/docs/5.1/eloquent)。每个实体被一个Eloquent活动记录模型代表。这些模型对认证、许可、扩展有内建的机制。
 
 为了提供一种修改数据的方式，Flarum利用命令总线模式以及Laravel的[总线组件](http://laravel.com/docs/5.0/bus)。每个实体都有各种命令与其相关联(例如 `Flarum\Core\Discussions\Commands\StartDiscussion`, `Flarum\Core\Posts\Commands\PostReply`),这些命令都可以被调用来作用在Flarum的领域层上。
 
@@ -78,8 +81,8 @@ JavaScript应用基于[Mithril](http://mithril.js.org)开发，Mithril是一个�
 
 ### 猴子补丁
 
-扩展Flarum的前端JavaScript应用采用了一种叫[猴子补丁(monkey patching)](https://en.wikipedia.org/wiki/Monkey_patch)的概念.猴子补丁是运行时函数、方法和属性的替代。
+扩展Flarum的前端JavaScript应用采用了一种叫[猴子补丁](https://en.wikipedia.org/wiki/Monkey_patch)的概念.猴子补丁是运行时函数、方法和属性的替代。
 
 Flarum的前端用户界面有许多组件组成，他们中的每一个被定义为一个类。扩展可以用猴子补丁的方式修改这些类的方法，适当改变返回值。例如，一个扩展可以猴子补丁`DiscussionControls`类的`moderationControls`方法来添加一个新的锁定谈论的按钮.
 
-你将会在[扩展客户端(Extending the Client)]({{ site.baseurl }}/docs/extend/client)章节学到更多关于如何在Flarum的JavaScript应用中运用猴子补丁的内容。
+你将会在[扩展客户端]({{ site.baseurl }}/docs/extend/client)章节学到更多关于如何在Flarum的JavaScript应用中运用猴子补丁的内容。
