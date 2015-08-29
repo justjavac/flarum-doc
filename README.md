@@ -23,7 +23,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
 * 前言
   * 介紹 100% [@justjavac](https://github.com/justjavac)
   * 贡献
-  * FAQ
+  * FAQ 翻译中
 * 使用Flarum
   * 安装 100% [@justjavac](https://github.com/justjavac)
   * 故障诊断 100% [@justjavac](https://github.com/justjavac)
@@ -36,7 +36,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 扩展客户端
   * 主题 100% [@Seevil](https://github.com/Seevil)
   * 本地化 100% [@justjavac](https://github.com/justjavac)
-  * 分发
+  * 分发 翻译中
   * 管理
   * 格式化
   * 通知
