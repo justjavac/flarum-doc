@@ -41,3 +41,4 @@ $events->listen(BuildClientView::class, function (BuildClientView $event) {
     }
 });
 ```
+> 译者：[@Seevil](https://github.com/Seevil)

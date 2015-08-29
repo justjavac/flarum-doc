@@ -34,7 +34,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 扩展域
   * 扩展 API
   * 扩展客户端
-  * 主题
+  * 主题 100% [@Seevil](https://github.com/Seevil)
   * 本地化 100% [@justjavac](https://github.com/justjavac)
   * 分发
   * 管理
