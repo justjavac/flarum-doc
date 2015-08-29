@@ -33,7 +33,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 扩展 API
   * 扩展客户端
   * 主题
-  * 本地化
+  * 本地化 [@justjavac](https://github.com/justjavac)
   * 分发
   * 管理
   * 格式化
