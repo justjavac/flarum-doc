@@ -22,7 +22,7 @@ $events->listen(BuildClientView::class, function (BuildClientView $event) {
 
 ## 规范
 
-Flarum 使用的是BEM风格的CSS类的命名规则
+Flarum 使用的是BEM风格CSS类的命名规则
 
     .ComponentName-child--modifier
     
