@@ -28,3 +28,5 @@ Flarum 继承于 [esoTalk](http://esotalk.org) 和 [FluxBB](http://fluxbb.org)�
 
 - Toby Zerner ([GitHub](http://github.com/tobscure), [Twitter](http://twitter.com/tobscure))
 - Franz Liedke ([GitHub](http://github.com/franzliedke), [Twitter](http://twitter.com/franzliedke))
+
+> 译者：[@justjavac](https://github.com/justjavac)

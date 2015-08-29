@@ -66,3 +66,5 @@ mail_encryption: ...
 ## 导入数据
 
 最终我们希望可以将其他论坛的数据导入到 Flarum中，这样你就可以放心地迁移到Flarum软件。 然而，在这个阶段还为时过早，我们需要先发布稳定版！
+
+> 译者：[@justjavac](https://github.com/justjavac)
