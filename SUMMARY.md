@@ -1,14 +1,14 @@
 # Summary
 
-* 前言
+* [前言](preface/README.md)
     * [介紹](preface/introduction.md)
     * [贡献](preface/contributing.md)
     * [FAQ](preface/faq.md)
-* 使用Flarum
+* [使用 Flarum](preface/README.md)
     * [安装](using/installation.md)
     * [故障诊断](using/troubleshooting.md)
     * [使用 API](using/api.md)
-* 构建扩展
+* [构建扩展](preface/README.md)
     * [介绍](extend/introduction.md)
     * [打包](extend/packaging.md)
     * [扩展域](extend/domain.md)
