@@ -19,11 +19,11 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
 ## 贡献者
 
 * 前言
-  * 介紹 [justjavac](http://justjavac.com)
+  * 介紹 [@justjavac](https://github.com/justjavac)
   * 贡献
   * FAQ
 * 使用Flarum
-  * 安装 [justjavac](http://justjavac.com)
+  * 安装 [@justjavac](https://github.com/justjavac)
   * 故障诊断
   * 使用 API
 * 构建扩展
