@@ -30,7 +30,7 @@ Flarum 使用的是BEM风格CSS类的命名规则
 
 ## 模板
 
-如果需要，您可以使用自定义模板更改论坛布局。(默认的一个是位于[这里](https://github.com/flarum/core/blob/master/views/forum.blade.php)。）您的自定义模板必须包含所有相同的ID元素。
+如果需要，您可以使用自定义模板更改论坛布局。(默认的位于[这里](https://github.com/flarum/core/blob/master/views/forum.blade.php)。）您的自定义模板必须包含所有相同的ID元素。
 ```php
 use Flarum\Events\BuildClientView;
 use Flarum\Forum\Actions\ClientAction as ForumClientAction;
