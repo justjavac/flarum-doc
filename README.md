@@ -27,7 +27,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
 * 使用Flarum
   * 安装 100% [@justjavac](https://github.com/justjavac)
   * 故障诊断 100% [@justjavac](https://github.com/justjavac)
-  * 使用 API
+  * 使用 API 100% [@justjavac](https://github.com/justjavac)
 * 构建扩展
   * 介绍
   * 打包

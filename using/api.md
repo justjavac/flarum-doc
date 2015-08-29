@@ -1,10 +1,10 @@
 # 使用 API
 
-Every Flarum forum exposes a publicly-accessible JSON API that can read and write forum data. It conforms to the [JSON-API 1.0 specification]().
+每个 Flarum 论坛都有一个公开的 JSON API，可以对论坛数据进行读和写。它符合[JSON-API 1.0 规范](http://jsonapi.org.cn/)。
 
-## Authentication
+## 身份验证
 
-The API uses token-based authentication. Some endpoints do not require authentication. You can retrieve a token from the `/api/token` endpoint:
+API 使用基于令牌的身份验证机制。某些终端不需要身份验证。您可以通过 `/api/token` 取得一个令牌:
 
     POST /api/token HTTP/1.1
 
@@ -20,62 +20,64 @@ The API uses token-based authentication. Some endpoints do not require authentic
         "userId": "1"
     }
 
-You can then pass the token in an Authentication header in subsequent requests:
+然后，您可以在后续的请求头中，包含此身份验证令牌:
 
     GET /api/forum HTTP/1.1
     Authentication: Token YACub2KLfe8mfmHPcUKtt6t2SMJOGPXnZbqhc3nX
 
-## Forum
+## 论坛
 
-* `GET /api/forum` - get information about the forum, including groups and tags
-* `PATCH /api/forum` - update forum config
+* `GET /api/forum` - 关于论坛的信息，包括 groups 和 tags
+* `PATCH /api/forum` - 更新论坛配置
 
-## Discussions
+## discussion 讨论
 
-* `GET /api/discussions` - get all discussions (sort is `-time` by default)
-    * `filter[q]` - filter by username/gambits
-* `POST /api/discussions` - create a new discussion
-* `GET /api/discussions/:id` - get a discussion by ID
-* `PATCH /api/discussions/:id` - update a discussion
-* `DELETE /api/discussions/:id` - delete a discussion
+* `GET /api/discussions` - 获取所有的讨论（默认排序规则为 `-time`）
+    * `filter[q]` - 根据 username/gambits 过滤
+* `POST /api/discussions` - 创建一个新的讨论
+* `GET /api/discussions/:id` - 通过 ID 获取讨论
+* `PATCH /api/discussions/:id` - 更新一个讨论
+* `DELETE /api/discussions/:id` - 删除一个讨论
 
-## Posts
+## posts 帖子
 
-* `GET /api/posts` - get all discussions
-    * `filter[discussion]` - filter by discussion ID
-    * `filter[user]` - filter by user ID
-    * `filter[number]` - filter by number (position within the discussion)
-    * `filter[type]` - filter by post type
-* `POST /api/posts` - create a new post
-* `GET /api/posts/:id` - get a post by ID
-* `PATCH /api/posts/:id` - update a post
-* `DELETE /api/posts/:id` - delete a post
+* `GET /api/posts` - 获取所有帖子
+    * `filter[discussion]` - 根据 discussion ID 过滤
+    * `filter[user]` - 根据 user ID 过滤
+    * `filter[number]` - 根据数字 (discussion 中的位置)
+    * `filter[type]` - 根据 post type 过滤
+* `POST /api/posts` - 创建一个新的帖子
+* `GET /api/posts/:id` - 根据 ID 获取一个帖子
+* `PATCH /api/posts/:id` - 更新一个帖子
+* `DELETE /api/posts/:id` - 删除一个帖子
 
-## Users
+## Users 用户
 
-* `GET /api/users` - get all users
-    * `filter[q]` - filter by username/gambits
-* `POST /api/users` - register a new user
-* `GET /api/users/:idOrUsername` - get a user by ID or username
-* `PATCH /api/users/:id` - update a user
-* `DELETE /api/users/:id` - delete a user
-* `POST /api/users/:id/avatar` - upload a user avatar
-* `DELETE /api/users/:id/avatar` - delete a user avatar
+* `GET /api/users` - 获取所有用户
+    * `filter[q]` - 根据 username/gambits 过滤
+* `POST /api/users` - 注册新用户
+* `GET /api/users/:idOrUsername` - 根据 ID 和 username 获取一个用户
+* `PATCH /api/users/:id` - 更新一个用户
+* `DELETE /api/users/:id` - 删除一个用户
+* `POST /api/users/:id/avatar` - 更新用户头像
+* `DELETE /api/users/:id/avatar` - 删除用户头像
 
-## Groups
+## Groups 组
 
-* `GET /api/groups` - get all groups
-* `POST /api/groups` - create a new group
-* `PATCH /api/groups/:id` - update a group
-* `DELETE /api/groups/:id` - delete a group
+* `GET /api/groups` - 获取所有组
+* `POST /api/groups` - 创建一个新的组
+* `PATCH /api/groups/:id` - 更新一个组
+* `DELETE /api/groups/:id` - 删除一个组
 
-## Notifications
+## Notifications 通知
 
-* `GET /api/notifications` - get all notifications
-* `PATCH /api/notifications/:id` - mark a notification as read
+* `GET /api/notifications` - 获取所有通知
+* `PATCH /api/notifications/:id` - 将一个通知标记为已读
 
-## Tags
+## Tags 标签
 
-* `POST /api/tags` - create a new tag
-* `PATCH /api/tags/:id` - update a tag
-* `DELETE /api/tags/:id` - delete a tag
+* `POST /api/tags` - 创建一个新标签
+* `PATCH /api/tags/:id` - 更新一个标签
+* `DELETE /api/tags/:id` - 删除一个标签
+
+> 译者：[@justjavac](https://github.com/justjavac)
