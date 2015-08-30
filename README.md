@@ -31,7 +31,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
 * 构建扩展
   * 介绍 100% [@theFool32](https://github.com/theFool32)
   * 打包 100% [@theFool32](https://github.com/theFool32)
-  * 扩展域
+  * 扩展域 翻译中
   * 扩展 API 翻译中
   * 扩展客户端
   * 主题 100% [@Seevil](https://github.com/Seevil)
