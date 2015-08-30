@@ -1,6 +1,6 @@
 # 介绍
 
-Flarum 是一款自由、开源的论坛软件，它专注于简单。通过 Flarum 您可以轻松地为您的网站[搭建一个论坛](using/installation.md)。
+Flarum 是一款自由、开源的论坛软件，它专注于简单。通过 Flarum 您可以轻松地为您的网站[搭建一个论坛](../using/installation.md)。
 
 Flarum 的开发版托管在 [GitHub](https://github.com/flarum/flarum)。
 
