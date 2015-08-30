@@ -10,6 +10,7 @@
 base=${PWD}
 
 # Unzip an archive of the latest committed code
+# 解压 Flarum 最终版
 rm -rf /tmp/extension-release
 mkdir /tmp/extension-release
 git archive --format zip --worktree-attributes HEAD > /tmp/extension-release/release.zip
@@ -18,10 +19,12 @@ unzip release.zip -d ./
 rm release.zip
 
 # Install all Composer dependencies
+# 安装 Composer 依赖
 cd /tmp/extension-release/flarum
 composer install --prefer-dist --optimize-autoloader --ignore-platform-reqs --no-dev
 
 # Compile JavaScript
+# 编译 JavaScript
 # Assumes: npm install -g gulp flarum-gulp babel-core
 cd /tmp/extension-release/js
 for app in forum admin; do
