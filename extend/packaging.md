@@ -5,8 +5,9 @@
 在你开始写扩展之前，你需要在你的系统配置几个工具：
 
 * 下载并*全局*安装 [Composer](https://getcomposer.org) ，这对为你的扩展生成自动加载是必要的。
-
 * 配置 [Node.js](https://nodejs.org) 并全局安装 [Gulp](http://gulpjs.com) ，这对编译你扩展的客户端 JavaScript 是必要的。
+
+除此之外，你也可以安装 Flarum 的 [Vagrant development image]({{ site.baseurl }}/docs/contributing)，它帮你自动装好所有工具。
 
 ## 生成框架
 
