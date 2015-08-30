@@ -30,7 +30,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 使用 API 100% [@justjavac](https://github.com/justjavac)
 * 构建扩展
   * 介绍 100% [@theFool32](https://github.com/theFool32)
-  * 打包 翻译中
+  * 打包 100% [@theFool32](https://github.com/theFool32)
   * 扩展域
   * 扩展 API 翻译中
   * 扩展客户端

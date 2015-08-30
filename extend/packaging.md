@@ -7,7 +7,7 @@
 * 下载并*全局*安装 [Composer](https://getcomposer.org) ，这对为你的扩展生成自动加载是必要的。
 * 配置 [Node.js](https://nodejs.org) 并全局安装 [Gulp](http://gulpjs.com) ，这对编译你扩展的客户端 JavaScript 是必要的。
 
-除此之外，你也可以安装 Flarum 的 [Vagrant development image]({{ site.baseurl }}/docs/contributing)，它帮你自动装好所有工具。
+除此之外，你也可以安装 Flarum 的 [Vagrant development image](contributing.md)，它帮你自动装好所有工具。
 
 ## 生成框架
 
@@ -23,10 +23,10 @@ php flarum/flarum generate:extension
 
 * **bootstrap.php** 如果你的扩展被启用， Flarum 会在每当有请求时加载这个文件。这个文件是扩展启动的地方！你不应该修改它。
 * **flarum.json** 包含你扩展的元信息(标题、描述、作者、依赖项)。更多信息请往下看。
-* **js/** 存放扩展 JavaScript 文件。你将在[扩展客户端]({{ site.baseurl }}/docs/extend/client)了解到更多。
-* **less/** 存放扩展的 CSS 文件。你将在[主题]({{ site.baseurl }}/docs/extend/theming)了解到更多。
-* **locale/** 存放扩展的翻译文件。你将在[本地化]({{ site.baseurl }}/docs/extend/localization)了解到更多。
-* **migrations/** 当你扩展被安装/升级/卸载时会运行数据迁移。你将在[域扩展]({{ site.baseurl }}/docs/extend/domain)了解到更多。
+* **js/** 存放扩展 JavaScript 文件。你将在[扩展客户端](client.md)了解到更多。
+* **less/** 存放扩展的 CSS 文件。你将在[主题](theming.md)了解到更多。
+* **locale/** 存放扩展的翻译文件。你将在[本地化](localization.md)了解到更多。
+* **migrations/** 当你扩展被安装/升级/卸载时会运行数据迁移。你将在[域扩展](domain.md)了解到更多。
 * **src/** 存放扩展的后端源代码，将被使用 PSR-4 标准的 Composer 自动加载。
 
 ## flarum.json
@@ -70,4 +70,6 @@ class AddClientAssets
 
 *这*是我们注册事件监听器的地方。我们导入 event 类，然后在订阅者的 `subscribe` 方法里调用分发器的 `listen()` ， 传递的参数是我们希望订阅的事件名称和处理事件的方法。
 
-这些特定事件监听器服务于注册所有生成的默认翻译、 JavaScript 和 CSS 文件。你可以在[扩展客户端]({{ site.baseurl }}/docs/extend/client)章节了解到关于他们得更多信息。
+这些特定事件监听器服务于注册所有生成的默认翻译、 JavaScript 和 CSS 文件。你可以在[扩展客户端](client.md)章节了解到关于他们得更多信息。
+
+> 译者：[@theFool32](https://github.com/theFool32)
