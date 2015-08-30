@@ -6,7 +6,18 @@
 
 如需报告漏洞，请在以下的 Github 库中创建问题（issue）：
 
-[**核心(Core)**](https://github.com/flarum/core) &nbsp; [BBCode](https://github.com/flarum/bbcode) &nbsp; [表情(Emoji)](https://github.com/flarum/emoji) &nbsp; [喜欢（赞）(Like)](https://github.com/flarum/likes) &nbsp; [锁(Lock)](https://github.com/flarum/lock) &nbsp; [Markdown](https://github.com/flarum/markdown) &nbsp; [提到(Mentions)](https://github.com/flarum/mentions) &nbsp; [推送器(Pusher)](https://github.com/flarum/pusher) &nbsp; [置顶(Sticky)](https://github.com/flarum/sticky) &nbsp; [订阅(Subscriptions)](https://github.com/flarum/Subscriptions) &nbsp; [暂停(Suspend)](https://github.com/flarum/suspend) &nbsp; [标签(Tags)](https://github.com/flarum/tags)
+- [**核心(Core)**](https://github.com/flarum/core)
+- [BBCode](https://github.com/flarum/bbcode)
+- [表情(Emoji)](https://github.com/flarum/emoji)
+- [喜欢（赞）(Like)](https://github.com/flarum/likes)
+- [锁(Lock)](https://github.com/flarum/lock) 
+- [Markdown](https://github.com/flarum/markdown)
+- [提到(Mentions)](https://github.com/flarum/mentions)
+- [推送器(Pusher)](https://github.com/flarum/pusher)
+- [置顶(Sticky)](https://github.com/flarum/sticky)
+- [订阅(Subscriptions)](https://github.com/flarum/Subscriptions)
+- [暂停(Suspend)](https://github.com/flarum/suspend)
+- [标签(Tags)](https://github.com/flarum/tags)
 
 ## 贡献代码
 
