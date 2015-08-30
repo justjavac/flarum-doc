@@ -36,7 +36,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 扩展客户端
   * 主题 100% [@Seevil](https://github.com/Seevil)
   * 本地化 100% [@justjavac](https://github.com/justjavac)
-  * 分发 翻译中
+  * 分发 100% [@ttnl](https://github.com/ttnl)
   * 管理
   * 格式化
   * 通知

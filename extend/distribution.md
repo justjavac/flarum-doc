@@ -1,8 +1,8 @@
 # 分发
 
-The goal with distribution is to allow people to simply drop an extension into their extensions directory. They shouldn't need to install any of the tools or compile any code – that's your job as the developer!
+分发的目标是使得别人能轻松的安装扩展，只需把它放到扩展文件夹里即可。他们可不应该需要装某种工具或者编译什么代码――那是你开发者的工作！
 
-So, before you package up your extension, you'll need to install all composer dependencies and compile your JavaScript application. An example build script:
+所以在你打包你的扩展之前，你需要安装好所有的 Compser 依赖项，并且编译你的 JavaScript 程序。一个打包脚本的示例：
 
 ```bash
 #!/usr/bin/env bash
@@ -31,3 +31,5 @@ for app in forum admin; do
   rm -rf "/tmp/extension-release/js/${app}/node_modules"
 done
 ```
+
+> 译者：[@ttnl](https://github.com/ttnl)
