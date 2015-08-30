@@ -22,25 +22,23 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
 
 * 前言
   * 介紹 100% [@justjavac](https://github.com/justjavac)
-  * 贡献
-  * FAQ
+  * 贡献 [@ttnl](https://github.com/ttnl)
+  * FAQ 100% [@ttnl](https://github.com/ttnl)
 * 使用Flarum
   * 安装 100% [@justjavac](https://github.com/justjavac)
   * 故障诊断 100% [@justjavac](https://github.com/justjavac)
   * 使用 API 100% [@justjavac](https://github.com/justjavac)
 * 构建扩展
-  * 介绍
-  * 打包
+  * 介绍 100% [@theFool32](https://github.com/theFool32)
+  * 打包 翻译中
   * 扩展域
-  * 扩展 API
+  * 扩展 API 翻译中
   * 扩展客户端
   * 主题 100% [@Seevil](https://github.com/Seevil)
   * 本地化 100% [@justjavac](https://github.com/justjavac)
-  * 分发
+  * 分发 100% [@ttnl](https://github.com/ttnl)
   * 管理
   * 格式化
   * 通知
   * 帖子
   * 搜索
-
-

@@ -1,25 +1,25 @@
 # 贡献
 
-## Bug Reports
+## 报告漏洞
 
-If you find a bug, we'd like to know about it! Remember that the goal of a bug report is to make it easy for us to replicate the bug and develop a fix. Therefore, you should include as much relevant information as possible, and communicate it in a clear, factual way. [This article](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html) is a great resource on how to report bugs effectively.
+如果你发现了一个漏洞，我们愿闻其详。请记住，漏洞报告的目标是使我们能轻松地复现此漏洞，并开发出对应补丁。因此，你应该提供尽可能多的相关信息，并且用清晰且基于事实的语言与我们沟通。[这篇文章](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)是关于如何有效报告漏洞的绝佳材料。
 
-To report a bug, please create an issue in the relevant GitHub repository:
+如需报告漏洞，请在以下的 Github 库中创建问题（issue）：
 
-[**Core**](https://github.com/flarum/core) &nbsp; [BBCode](https://github.com/flarum/bbcode) &nbsp; [Emoji](https://github.com/flarum/emoji) &nbsp; [Likes](https://github.com/flarum/likes) &nbsp; [Lock](https://github.com/flarum/lock) &nbsp; [Markdown](https://github.com/flarum/markdown) &nbsp; [Mentions](https://github.com/flarum/mentions) &nbsp; [Pusher](https://github.com/flarum/pusher) &nbsp; [Sticky](https://github.com/flarum/sticky) &nbsp; [Subscriptions](https://github.com/flarum/Subscriptions) &nbsp; [Suspend](https://github.com/flarum/suspend) &nbsp; [Tags](https://github.com/flarum/tags)
+[**核心(Core)**](https://github.com/flarum/core) &nbsp; [BBCode](https://github.com/flarum/bbcode) &nbsp; [表情(Emoji)](https://github.com/flarum/emoji) &nbsp; [喜欢（赞）(Like)](https://github.com/flarum/likes) &nbsp; [锁(Lock)](https://github.com/flarum/lock) &nbsp; [Markdown](https://github.com/flarum/markdown) &nbsp; [提到(Mentions)](https://github.com/flarum/mentions) &nbsp; [推送器(Pusher)](https://github.com/flarum/pusher) &nbsp; [置顶(Sticky)](https://github.com/flarum/sticky) &nbsp; [订阅(Subscriptions)](https://github.com/flarum/Subscriptions) &nbsp; [暂停(Suspend)](https://github.com/flarum/suspend) &nbsp; [标签(Tags)](https://github.com/flarum/tags)
 
-## Contributing Code
+## 贡献代码
 
-Want to help us build Flarum? Great! Contributions are welcome, and are accepted via pull requests. Please review these guidelines before submitting any pull requests.
+希望帮助我们构建 Flarum？真是太棒了！我们欢迎贡献，并以 Pull Requests 的方式接受。请在提交任何 Pull Requests 前先阅读这些指导。
 
-Check out the [Roadmap]() for an overview of what needs to be done. In order to make it as easy as possible for people to start hacking Flarum, we've written detailed descriptions for many of the GitHub issues. They contain pointers on what needs to be done and where to look. [See if there's anything that you'd like to do!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
+查阅[路线图](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)来获得需要做些什么的概述。为使人们能尽量轻松地开始参与贡献 Flarum，我们已对 Github 上的很多问题都做了详细的说明。这些说明包括了该做什么、去哪里做的指示。[来看看有没有什么你喜欢做的!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
 
-### Development Environment
+### 开发环境
 
-In order to start hacking, you'll need to get a development environment set up. The easiest way to do this is to install Flarum's Vagrant image:
+要开始贡献代码，你需要设置一个开发环境，最简单的方法就是安装 Flarum 的 Vagrant 镜像了：
 
-1 - Install [Vagrant](https://www.vagrantup.com) and [VirtualBox](https://www.virtualbox.org).
-2 - Clone the flarum/flarum repository and set up the Vagrant box:
+1 - 安装 [Vagrant](https://www.vagrantup.com) 和 [VirtualBox](https://www.virtualbox.org)；
+2 - Clone Github 上的 flarum/flarum 库并且在 Vagrant box 中安装:
 
 ```bash
 git clone --recursive https://github.com/flarum/flarum.git
@@ -27,28 +27,30 @@ cd flarum
 vagrant up
 ```
 
-3 - Add an entry to your /etc/hosts file: `192.168.29.29 flarum.dev`
-4 - Visit flarum.dev in a browser.
+3 - 在你的 `/etc/hosts` 文件中添加：`192.168.29.29 flarum.dev`；
+4 - 在浏览器中浏览 flarum.dev。
 
-If you can't use Vagrant for whatever reason, you can still set up Flarum for development on your own local server. You'll need to install [Composer](), [Node.js](), and [Gulp]() on your system. Clone the flarum/flarum repository as above, and then run the [relevant commands](https://github.com/flarum/flarum/blob/master/flarum/vagrant/environment.sh) to install Flarum's dependencies.
+如果你出于某种原因而不能使用 Vagrant，你依然可以在你的本地服务器上安装 Flarum。你将需要安装 [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/) 和 [Gulp](http://gulpjs.com/)。Clone flarum/flarum 库然后运行[相关命令](https://github.com/flarum/flarum/blob/master/flarum/vagrant/environment.sh)来安装依赖项。
 
-Once you have the core installed, you'll probably also want to pull in some of the extensions that are bundled with Flarum. Clone each [extension repository](https://github.com/flarum) into your `extensions` directory, and follow the included instructions to install dependencies and compile the assets. (Generally this means running `composer install` in the root, then `npm install` inside the js/admin and js/forum directories.)
+一旦你安装了核心，你可能也需要安装一些与 Flarum 捆绑的扩展。Clone 每个[扩展库](https://github.com/flarum) 到你的 `extensions` 文件夹下, 并按照提供的说明安装依赖项并编译对应资源。（一般而言，这意味着需要在根目录下运行 `composer install'，然后在 `js/admin` 和 `js/forum` 文件夹下运行 `npm install`。）
 
-### Pull Request Guidelines
+### Pull Request 指南
 
-* Send a coherent commit history, making sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash](http://git-scm.com/book/en/Git-Tools-Rewriting-History) them before submitting.
-* You may also need to [rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) to avoid merge conflicts.
+* 若想提交包括历史的 commit，请确保在你 pull request 中的每个 commit 都具有相对独立的意义；如果你在开发过程中不得不多次提交了中间版本，请在提交之前进行[squash](http://git-scm.com/book/en/Git-Tools-Rewriting-History) 操作。
+* 你也可能需要进行 [rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) 操作以避免合并冲突。
 
-### Tests
+### 测试
 
-Flarum's testing story is still being written. If you have experience with testing, please [help us develop a solid testing strategy](https://github.com/flarum/core/issues/)!
+关于 Flarum 测试部分的故事仍在书写；如果你有测试相关经验，请[帮助我们开发可靠的测试策略](https://github.com/flarum/core/issues/)！
 
-### Style & Conventions
+### 样式与约定
 
-Consistency is important! Please make sure you follow these coding style and naming conventions.
+代码一致性非常重要！请确保你书写的代码符合以下编码风格和命名约定。
 
-PHP code should follow the [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standard and the [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md) autoloading standard.
+PHP 代码应遵循 [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) 编码标准和 [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md) 自动加载标准。
 
-JavaScript code should loosely follow the [Airbnb Style Guide](https://github.com/airbnb/javascript). There is an `.eslintrc` file that you can use to check your contributions.
+JavaScript 代码应粗略地遵循[Airbnb Style Guide](https://github.com/airbnb/javascript)。将有一个 `.eslintrc` 文件可用来检查你的贡献。
 
-<!-- TODO: CSS style/naming conventions, database columns, translation keys -->
+*TODO: CSS style/naming conventions, database columns, translation keys*
+
+> 译者：[@ttnl](https://github.com/ttnl)  
