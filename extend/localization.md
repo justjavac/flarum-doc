@@ -80,4 +80,6 @@ $events->listen(RegisterLocales::class, function (RegisterLocales $event) {
 });
 ```
 
+Flarum 国际化语言包 <https://github.com/justjavac/flarum-i18n-zh>
+
 > 译者：[@justjavac](https://github.com/justjavac)
