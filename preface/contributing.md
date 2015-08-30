@@ -29,8 +29,8 @@
 
 要开始贡献代码，你需要设置一个开发环境，最简单的方法就是安装 Flarum 的 Vagrant 镜像了：
 
-1 - 安装 [Vagrant](https://www.vagrantup.com) 和 [VirtualBox](https://www.virtualbox.org)；
-2 - Clone Github 上的 flarum/flarum 库并且在 Vagrant box 中安装:
+1. 安装 [Vagrant](https://www.vagrantup.com) 和 [VirtualBox](https://www.virtualbox.org)；
+2. Clone Github 上的 flarum/flarum 库并且在 Vagrant box 中安装:
 
 ```bash
 git clone --recursive https://github.com/flarum/flarum.git
@@ -38,8 +38,8 @@ cd flarum
 vagrant up
 ```
 
-3 - 在你的 `/etc/hosts` 文件中添加：`192.168.29.29 flarum.dev`；
-4 - 在浏览器中浏览 flarum.dev。
+3. 在你的 `/etc/hosts` 文件中添加：`192.168.29.29 flarum.dev`；
+4. 在浏览器中浏览 flarum.dev。
 
 如果你出于某种原因而不能使用 Vagrant，你依然可以在你的本地服务器上安装 Flarum。你将需要安装 [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/) 和 [Gulp](http://gulpjs.com/)。Clone flarum/flarum 库然后运行[相关命令](https://github.com/flarum/flarum/blob/master/flarum/vagrant/environment.sh)来安装依赖项。
 
