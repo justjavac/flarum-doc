@@ -1,87 +1,88 @@
 # 简介
 
-Flarum is designed to be lightweight and highly extensible. In fact, most of the features that ship with Flarum are actually Extensions. This approach makes Flarum extremely customizable. A user can disable any features they don't use on their forum, and install other Extensions that give them the desired functionality.
+Flarum被设计成轻量级和高扩展的。事实上，Flarum的大部分特性实际是扩展。这种方式使得Flarum可定制性很强。用户可以禁用他不需要的特性和安装能给他们想要功能的扩展。
 
-In order to achieve this extensibility, Flarum has been built with rich APIs and extension points. This section of the documentation aims to teach you how Flarum works, and how to use the APIs so that you can build your own Extensions.
+为了达到这种扩展性，Flarum被实现成有丰富接口和扩展点。文档该部分旨在指导你Flarum如何运作和如何去使用接口构建你自己的扩展。
 
-> **The Extension API is unstable and will change over the next few months as we refine it.** Additionally, this documentation is a work in progress. [We would love your feedback!](https://github.com/flarum/core/issues/246)
+> **扩展接口还不稳定并且会在接下来几个月内随着我们完善它而改变。**另外，本文档也未完成。[我们需要你的反馈！](https://github.com/flarum/core/issues/246)
 
-## Core vs. Extensions
+## 核心 vs 扩展
 
-Where do we draw the line between Flarum's core and its extensions? Why are some features included in the core, and others aren't? It is important to understand this distinction so that we can maintain consistency and quality within Flarum's ecosystem.
+我们怎么界定Flarum的核心和扩展？为什么一些特性被包含在核心内而另一些不呢？理解这个差异对我们维持Flarum生态系统的一致性和高质量很重要。
 
-**Flarum's core** is not intended to be packed full of features. Rather, it is a scaffold, or a framework, which provides a reliable foundation on which extensions can build. It contains only basic, unopinionated functionality that is essential to a forum: discussions, posts, users, groups, and notifications.
+**Flarum的核心**并不意图去包含完整特性，相反，它是作为脚手架，或者说是框架，为扩展提供一个可依赖的构建基础。它只包含对一个论坛来说必要的基础的、不可缺失的功能，这些功能有讨论、帖子、用户、群组和通知。
 
-**Bundled extensions** are features that are packaged with Flarum and enabled by default. They are extensions just like any other, and may be disabled and uninstalled. While their scope is not intended to address all use-cases, the idea is to make them generic and configurable enough that they can satisfy the majority.
+**附带的扩展**是随Flarum一起打包的特性，默认情况下是被启用的。这些扩展和其他一样是可以被禁用和卸载的。尽管他们并不旨在处理所有使用实例，但这些扩展还是很通用并且被配置得足够好使得他们能够满足大部分情况。
 
-**Third-party extensions** are features which are made by others and are not officially supported by the Flarum team. They should be built and used to address more specific use-cases.
+**第三方扩展**是其他人制作的、不被Flarum团队官方支持的特性。他们应当被构建和用于特定的情形。
 
-If you are aiming to address a bug or shortcoming of the core, or of an existing bundled extension, it may be appropriate to *contribute to the respective project* rather than disperse effort on a new third-party extension. It is a good idea to start a discussion on the [Flarum Community](http://discuss.flarum.org) to get the perspective of the Flarum developers.
+如果你想解决核心或者已有的附带扩展的bug或者缺陷，我们将很感激你对相应的项目作出贡献而不是分散精力在一个新的第三方扩展上。在[Flarum论坛](http://discuss.flarum.org)上新建一个讨论来听听Flarum开发者的意见也是个好想法。
 
-## How Flarum Works
+## Flarum如何运作
 
-Before you can build extensions, you must first understand how Flarum works. This section aims to give a quick overview of the various parts that make up Flarum.
+在你构建扩展之前，你一定得先理解Flarum如何运作。本节旨在快速浏览组成Flarum的各部分。
 
-At the highest level, Flarum has a three-layered architecture:
+从顶层来看，Flarum有3层架构：
 
-* The **domain** layer, which is responsible for all of Flarum's data structures and domain logic.
-* The **API** layer, which exposes these data structures in a standardized format (i.e. a JSON API).
-* The **client** layer, which provides the default web user interface that consumes the API.
+* **领域(domain)**层，代表所有Flarum数据结构和领域逻辑。
+* **接口(API)**层,以一种标准格式(如JSON API)暴露这些数据结构。
+* **客户(client)**层,提供默认网络用户来使用接口。
 
-In order to build an extension, you will need to know a little bit about how to extend each of these layers. For example, the *Sticky* extension:
+为了构建扩展，你需要了解一点如何去扩展这些层中的每一个。例如*锁定(Sticky)*扩展:
 
-* Extends the domain layer, adding a new `is_sticky` property for discussions.
-* Extends the API layer, allowing the property's value to be changed via the JSON API.
-* Extends the client layer, adding a discussion control item which calls the JSON API when clicked.
+* 扩展领域层,为讨论增加一个新的`is_sticky`属性。
+* 扩展接口层，允许通过JSON API改变属性的值。
+* 扩展客户层，增加一个讨论控制条目，该条目被点击时会调用JSON API。
 
-Let's look a little more in-depth into each of these layers, and how they are built.
+让我们更深入得了解下每个层，知道他们是如何被构建的。
 
-### Domain
+### 领域
 
-The domain layer is responsible for **managing and modelling the forum's data**. This includes storing data in a database, providing programmatic commands to modify the data, and handling related logic (e.g. when a user makes a post, we add one to the user's post count).
+领域层代表着**管理论坛数据和为论坛数据建模**。这包括用数据库存储数据、提供程序命令去修改数据和控制相关逻辑(例如当一个用户发帖时，我们在用户发帖数上加一)。
 
-The domain layer is built with **object-oriented PHP**, under the `Flarum\Core` namespace. Each entity in the domain (discussions, posts, etc.) has its own child namespace.
+领域层使用**面向对象的PHP**来构建，位于`Flarum\Core`这个名称空间里.领域层的每个实体(讨论、帖子等)都有自己的子名称空间。
 
-The domain layer relies on Laravel's [Database component](http://laravel.com/docs/5.1/database) and its [Eloquent ORM](http://laravel.com/docs/5.1/eloquent). Each entity is represented by an Eloquent active-record model. These models have built-in mechanisms for validation, permissions, and extension.
+领域层依赖Laravel的[数据库组件](http://laravel.com/docs/5.1/database)和[Eloquent ORM](http://laravel.com/docs/5.1/eloquent)。每个实体被一个Eloquent活动记录模型代表。这些模型对认证、许可、扩展有内建的机制。
 
-To provide a way for data to be modified, Flarum makes use of the command bus pattern with Laravel's [Bus component](http://laravel.com/docs/5.0/bus). There are various commands related to each entity (e.g. `Flarum\Core\Discussions\Commands\StartDiscussion`, `Flarum\Core\Posts\Commands\PostReply`) which can be dispatched to act on Flarum's domain.
+为了提供一种修改数据的方式，Flarum利用命令总线模式以及Laravel的[总线组件](http://laravel.com/docs/5.0/bus)。每个实体都有各种命令与其相关联(例如 `Flarum\Core\Discussions\Commands\StartDiscussion`, `Flarum\Core\Posts\Commands\PostReply`),这些命令都可以被调用来作用在Flarum的领域层上。
 
-### API
+### 接口
 
-The API layer sits on top of the domain, exposing a **public JSON API which can read and write the forum's data**. It conforms to the [JSON-API 1.0 specification](http://jsonapi.org).
+接口层位于领域层之上，提供**能读写论坛数据的公有的JSON API**。它符合[JSON-API 1.0 规范](http://jsonapi.org)
 
-The API layer is built with **object-oriented PHP**, under the `Flarum\Api`. Each API endpoint has a corresponding **Action** (essentially a controller) which receives a Request object and returns a Response.
+接口层使用**面向对象的PHP**来构建,存放在`Flarum\Api`下。每个接口末端有相对应的**操作(Action)**(本质上是一个控制器)，这些操作接收请求对象然后返回响应。
 
-Most Actions make use of the [tobscure/json-api library](https://github.com/tobscure/json-api) to output a JSON-API document. Data from Flarum's domain is transformed into a publicly-consumable format by Serializers. Actions which write data use the command bus to dispatch commands to the domain layer.
+大部分操作使用[tobscure/json-api库](https://github.com/tobscure/json-api)来输出一个JSON-API文档。来自Flarum领域层的数据通过序列化被转换成可使用的格式。写数据操作使用命令总线将命令发送到领域层。
 
-### Client
+### 客户
 
-The client layer sits on top of the API, exposing a **user interface** so that Flarum can be used by humans. There are two parts to the client: a basic read-only HTML version of the content, and an interactive single-page JavaScript application. Both consume the JSON API.
+客户层位于接口层智商，提供人们能使用Flarum的**用户界面**。客户层有两部分：一个基础的只读内容的HTML版本，和一个交互的单页JavaScript应用。两者都使用JSON API.
 
-The client HTML is served up using **object-oriented PHP**, under the `Flarum\Forum`. Similar to the API, each of the forum's routes has a corresponding **Action** (essentially a controller) which receives a [PSR-7](https://github.com/php-fig/http-message) Request and returns a Response.
+客户层HTML利用**面向对象的PHP**，存放在`Flarum\Forum`下。和接口层相似，每个论坛的路径有一个对应的**操作**(本质是控制器)，这个操作能接收[PSR-7](https://github.com/php-fig/http-message)请求并返回响应.
 
-The typical client Response contains a basic HTML representation of the page's content, as well as code to boot the JavaScript application. It is constructed using Laravel's [View component](http://laravel.com/docs/5.1/views) and [Blade templating system](http://laravel.com/docs/5.1/blade).
+典型的客户端响应包含一个表现页面的内容的基础HTML样式,和启动JavaScript应用的代码。它使用Laravel's [视图组件](http://laravel.com/docs/5.1/views)和[Blade模板系统](http://laravel.com/docs/5.1/blade)来构建。
 
-The JavaScript application is powered by [Mithril](http://mithril.js.org), a lightweight rendering framework that is similar to [React](http://facebook.github.io/react). It is transpiled from an ES6 codebase using [Gulp](http://gulpjs.com) and [Babel](https://babeljs.io).
+JavaScript应用基于[Mithril](http://mithril.js.org)开发，Mithril是一个和[React](http://facebook.github.io/react)相似的轻量级渲染框架。JavaScript应用利用[Gulp](http://gulpjs.com)和[Babel](https://babeljs.io)从ES6代码库转换而来。
 
-The client also includes a [LESS CSS](http://lesscss.org) compiler to compile a stylesheet for the client application.
+客户层还包含一个[LESS CSS](http://lesscss.org)编译器来为客户端应用编译样式表。
 
-## How Extensions Work
+## 扩展如何运作
 
-Now that you've gained a bit of an understanding of how Flarum works, let's look at the basic concepts of how we can extend Flarum.
+现在你已经理解了Flarum如何运作，让我们来看看关于如何扩展Flarum的基础概念。
 
-### Events
+### 事件
 
-Throughout Flarum's back-end PHP code (i.e. the domain, API, and part of the client layers), there are many **Events** that extensions may listen and respond to. For example, after a discussion has been started, the `DiscussionWasStarted` event is fired. An extension could listen to this event in order to send some kind of notification whenever a discussion is started.
+贯穿Flarum后端PHP代码(例如领域层、接口层、部分客户层)，有许多扩展可能
+会监听和作出响应的**事件**。例如，开始一个讨论后，'DiscussionWasStarted'事件被触发。扩展可以监听这个事件，这样当一个讨论开始后就能发送某种通知。
 
-All events that can be listened for are found in the `Flarum\Events` namespace.
+在'Flarum\Events'名称空间下能找到的所有事件都能被监听.
 
-Listening for events is as simple as calling the `listen()` method on the event dispatcher, passing the class name of the event and a closure to handle the event. You will learn more about how to register event listeners in the [Packaging]({{ site.baseurl }}/docs/extend/packaging) section.
+监听事件很简单,只需要在事件调度程序中调用`listen()`方法,并传给它一个事件的类名和控制事件的闭包.你能在[打包]({{ site.baseurl }}/docs/extend/packaging)章节学习到更多关于如何去注册事件监听者的内容.
 
-### Monkey Patching
+### 猴子补丁
 
-Extending Flarum's front-end JavaScript application uses a concept called [monkey patching](https://en.wikipedia.org/wiki/Monkey_patch). Monkey patching is the replacement of functions, methods, and attributes at runtime.
+扩展Flarum的前端JavaScript应用采用了一种叫[猴子补丁](https://en.wikipedia.org/wiki/Monkey_patch)的概念.猴子补丁是运行时函数、方法和属性的替代。
 
-Flarum's front-end interface is made up of many components, each of which is defined by a class. Extensions may monkey-patch methods of these classes, mutating the return values as appropriate. For example, an extension could monkey-patch the `moderationControls` method of the `DiscussionControls` class in order to add a new button which stickies a discussion.
+Flarum的前端用户界面有许多组件组成，他们中的每一个被定义为一个类。扩展可以用猴子补丁的方式修改这些类的方法，适当改变返回值。例如，一个扩展可以猴子补丁`DiscussionControls`类的`moderationControls`方法来添加一个新的锁定谈论的按钮.
 
-You will learn more about how to apply monkey-patches to the Flarum's JavaScript application in the [Extending the Client]({{ site.baseurl }}/docs/extend/client) section.
+你将会在[扩展客户端]({{ site.baseurl }}/docs/extend/client)章节学到更多关于如何在Flarum的JavaScript应用中运用猴子补丁的内容。
