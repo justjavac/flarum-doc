@@ -1,45 +1,45 @@
 # 打包
 
-## Setting Up
+## 配置
 
-Before you can start building an extension, you'll need to set up a few tools on your system:
+在你开始写扩展之前，你需要在你的系统配置几个工具：
 
-* Download and install [Composer](https://getcomposer.org) *globally*, which is required to generate an autoloader for your extension.
-* Set up [Node.js](https://nodejs.org) and install [Gulp](http://gulpjs.com) *globally*, which is required to compile your extension's client JavaScript.
+* 下载并*全局*安装 [Composer](https://getcomposer.org) ，这对为你的扩展生成自动加载是必要的。
+* 配置 [Node.js](https://nodejs.org) 并全局安装 [Gulp](http://gulpjs.com) ，这对编译你扩展的客户端 JavaScript 是必要的。
 
-Alternatively, you can install Flarum's [Vagrant development image]({{ site.baseurl }}/docs/contributing), which gives you an environment where all of these tools are automatically set up for you.
+除此之外，你也可以安装 Flarum 的 [Vagrant development image]({{ site.baseurl }}/docs/contributing)，它帮你自动装好所有工具。
 
-## Generating a Skeleton
+## 生成框架
 
-Flarum comes with a handy terminal utility which creates a skeleton extension for you, so you can get right to coding. Open up the terminal and run the following command from your forum's root directory:
+Flarum 有便利的终端工具来为你生成扩展的框架，这样你就可以马上开始写代码了。打开终端并在你论坛根目录下运行下面的命令：
 
 ```bash
 php flarum/flarum generate:extension
 ```
 
-The utility will ask you for a few details. The extension name is a unique name for your extension and may only contain alphanumeric and dash (`-`) characters. The namespace is used to isolate your code; you'll probably want to use your vendor name followed by the extension name (e.g. `Tobscure\Attachments`).
+工具会向你咨询一些细节。扩展名是你扩展独一无二的名称，只能包含数字、字母和连字符(`-`).名称空间用来分离你的代码;你可以提供者名字加扩展名(例如 `Tobscure\Attachments` )来作为名称空间.
 
-Once you've filled out all the details, the utility will create a new directory in the `extensions` directory at the root of your forum. It might take a few minutes to get everything ready; in the meantime, let's check out what was generated for us:
+一旦你填完所有细节,工具会在你论坛根目录里的 `extensions` 目录下创建一个新目录。完成这些可能会花费几分钟的时间。下面让我们看下生成了些什么：
 
-* **bootstrap.php** Flarum loads this file on every request when your extension is enabled. Where it all begins! You shouldn't ever need to touch this file.
-* **flarum.json** Contains meta information about your extension (title, description, author, dependencies). More information a bit further down.
-* **js/** Where your extension's JavaScript lives. You'll learn more about this in [Extending the Client]({{ site.baseurl }}/docs/extend/client).
-* **less/** Where your extension's CSS styles live. You'll learn more about this in [Theming]({{ site.baseurl }}/docs/extend/theming).
-* **locale/** Where your extension's translations live. You'll learn more about this in [Localization]({{ site.baseurl }}/docs/extend/localization).
-* **migrations/** Database migrations that are run when your extension is installed/upgraded/uninstalled. You'll learn more about these in [Extending the Domain]({{ site.baseurl }}/docs/extend/domain).
-* **src/** Where your extension's back-end source code lives, autoloaded by Composer using the PSR-4 standard.
+* **bootstrap.php** 如果你的扩展被启用， Flarum 会在每当有请求时加载这个文件。这个文件是扩展启动的地方！你不应该修改它。
+* **flarum.json** 包含你扩展的元信息(标题、描述、作者、依赖项)。更多信息请往下看。
+* **js/** 存放扩展 JavaScript 文件。你将在[扩展客户端]({{ site.baseurl }}/docs/extend/client)了解到更多。
+* **less/** 存放扩展的 CSS 文件。你将在[主题]({{ site.baseurl }}/docs/extend/theming)了解到更多。
+* **locale/** 存放扩展的翻译文件。你将在[本地化]({{ site.baseurl }}/docs/extend/localization)了解到更多。
+* **migrations/** 当你扩展被安装/升级/卸载时会运行数据迁移。你将在[域扩展]({{ site.baseurl }}/docs/extend/domain)了解到更多。
+* **src/** 存放扩展的后端源代码，将被使用 PSR-4 标准的 Composer 自动加载。
 
 ## flarum.json
 
-todo
+文档待写。
 
-## Event Subscribers 
+## 事件订阅者
 
-As you will know from the introduction, the only real way to get anything done with an extension is to **listen for and respond to events**. Let's have a look at how we go about doing that.
+就像你从介绍里了解到的一样，扩展工作的唯一方式就是**监听和响应事件**。让我们看下我们如何实现那个。
 
-We'll start from the beginning. If you take a look at `bootstrap.php`, you'll see that it returns the name of an Extension class. At the start of every request, if the extension is enabled, Flarum includes this file and registers this class as a [Service Provider](http://laravel.com/docs/5.1/providers). This class is your key to getting stuff done.
+我们将从头开始。如果你看过 `bootstrap.php` ,你会分发现它返回一个扩展类的名字。如果扩展启用了，那在每个请求的开始，Flarum会包含这个文件并且把这个类注册为一个[服务提供者](http://laravel.com/docs/5.1/providers)。这个类是你处理事务的关键。
 
-So let's check it out! Flarum generated it for you in the `src` directory. If you take a look inside, you'll see this lonely method:
+我们再继续看， Flarum 在 `src` 目录下生成了这个类.如果你仔细看,你会发现这个独立的方法:
 
 ```php
     public function listen(Dispatcher $events)
@@ -48,11 +48,11 @@ So let's check it out! Flarum generated it for you in the `src` directory. If yo
     }
 ```
 
-Flarum calls the `listen` method of each extension service provider as soon as it has set up the eventing system. It passes an instance of [Laravel's event dispatcher](http://laravel.com/docs/5.1/events), so you can listen to events as you please.
+Flarum 一建立起它的事件系统就会调用每个扩展服务提供者的 `listen` 方法。它传递一个 [Laravel 的消息分发](http://laravel.com/docs/5.1/events)实体，一次你能如你所愿得监听事件。
 
-We're doing something a little different here, though. Instead of adding event listeners directly, we call the `subscribe` method to register an event subscriber. **Subscribers** are merely a way of **grouping related event listeners**, which helps to keep your code organised. You can organise your event listeners however you want, but Flarum's bundled extensions use the convention of subscribers named after the task that they are accomplishing (e.g. `AddClientAssets` or `AddApiAttributes`).
+但我们在这做了些不同的事。我们调用 `subscribe` 方法去注册一个事件订阅者而不是直接添加事件监听器. **订阅者**是**分组相关事件监听器**的一种， 它能帮助你组织代码。你可以按你喜欢的方式组织你的事件监听器，但 Flarum 的附带扩展采用订阅者完成的任务加订阅者名(例如 `AddClientAssets` 或 `AddApiAttributes` )的约定。
 
-Alright, so let's check out the AddClientAssets listener that was generated for us:
+好了，让我们再看下生成的 AddClientAssets 监听器。
 
 ```php
 use Flarum\Events\RegisterLocales;
@@ -68,6 +68,6 @@ class AddClientAssets
     }
 ```
 
-*This* is where we register event listeners. We import the event classes, and then in the subscriber's `subscribe` method we call `listen()` on the dispatcher, passing along the name of the event we wish to subscribe to, and a method to handle the event.
+*这*是我们注册事件监听器的地方。我们导入 event 类，然后在订阅者的 `subscribe` 方法里调用分发器的 `listen()` ， 传递的参数是我们希望订阅的事件名称和处理事件的方法。
 
-These particular event listeners serve to register all of the default translation, JavaScript, and CSS files that were generated for us. For more information about them, you can read the [Extending the Client]({{ site.baseurl }}/docs/extend/client) section.
+这些特定事件监听器服务于注册所有生成的默认翻译、 JavaScript 和 CSS 文件。你可以在[扩展客户端]({{ site.baseurl }}/docs/extend/client)章节了解到关于他们得更多信息。
