@@ -1,24 +1,22 @@
-# 域（domain）
+# 扩展域
 
-As mentioned in the Introduction, the domain layer is responsible for **managing and modelling the forum's data**. This includes storing data in a database, providing programmatic commands to modify the data, and handling related logic (e.g. when a user makes a post, we add one to the user's post count).
+如介绍所述，域(Domain)层负责**管理和抽象化论坛数据**。这包括在数据库中贮存数据，提供编程命令以修改数据，并处理相关逻辑（比如，当用户发了帖子，我们就在用户的帖子数统计上加一）。
 
-In this section we will explore in-depth how to extend Flarum's domain.
+在本节我们将深入探讨如何扩展 Flarum 的域。
 
-## Migrations
+## 迁移
 
-If your extension introduces a new type of entity (e.g. tags) or adds new attributes to an existing entity (e.g. an `is_sticky` attribute to discussions), then you'll need to update Flarum's database schema so that this new data can be stored.
+如果您的扩展引入了一种新型的实体 (如标签)，或者将新属性添加到了一个现有的实体 (例如 `discussions` 的 `is_sticky` 属性)，那么你需要更新 Flarum 的数据库架构，以便新数据能被存储。
 
-This is achieved through **migrations**, which are based on [Laravel's implementation](http://laravel.com/docs/5.1/migrations). Migrations must be placed in your extension's `migrations` directory, and should be named with a timestamp and a description of the modification they make:
+可通过**迁移（migrations）**来实现这一工作；Flarum 中的迁移基于 [Laravel的实现](http://laravel.com/docs/5.1/migrations)。迁移文件必须被放置在你扩展的 `migrations` 文件夹下，命名时应包括时间戳和对其所作修改的描述，如下所示：
 
 	2015_02_24_000000_create_tags_table.php
 
-The file should contain a class, with the same description, that extends the `Flarum\Migrations\Migration` class. A migration class contains two methods: `up` and `down`. The `up` method is called whenever your extension is enabled (if the migration has not been run previously), so you can add new tables, columns, or indexes to the database, or perform any other setup tasks. The `down` method is called if the extension is uninstalled, and should reverse the operations performed by the `up` method.
+此文件应该包括一个扩展自 `Flarum\Migrations\Migration` 的类，并附有相同的描述。每个迁移类包括两个方法：`up` 和 `down`。`up` 方法在你的扩展启用时便会启动（如果该迁移以前没有进行过），因此你可以添加在数据库中添加新的表、列、索引等等，亦可执行其他安装操作。`down` 操作在扩展卸载时被调用，应能够回滚 `up` 操作所执行的行为。
 
-Migrations have access to a `$schema` variable, which is an instance of [Laravel's schema builder](http://laravel.com/docs/5.1/migrations#writing-migrations). This should be used to make changes to the database schema:
+迁移可调用 `$schema` 变量，此为 [Laravel 的架构生成器](http://laravel.com/docs/5.1/migrations#writing-migrations)的一个实例，可被用来对数据库架构进行调整：
 
 ```php
-<?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Flarum\Migrations\Migration;
 
@@ -41,19 +39,19 @@ class CreateTagsTable extends Migration
 }
 ```
 
-To run new migrations without having to re-enable your extension, simply run the upgrade command:
+如需在不重新启用某扩展运行新的迁移，只需简单地执行升级命令即可：
 
 	php flarum upgrade
 
-## Extending Models
+## 扩展模型
 
-In order to work with any new database schema that you set up, you'll want to create a new Model or extend an existing one. In Flarum, a Model extends `Flarum\Core\Model`, which in turn extends Laravel's `Eloquent\Model` class. [Get familiar with Eloquent!](http://laravel.com/docs/5.1/eloquent)
+为了使用您设置的新数据库结构，你将需要创建新的模型(Model)或对现有的模型加以扩展。在Flarum 中，每个模型都扩展自 `Flarum\Core\Model`，此亦为 Laravel 的 `Eloquent\Model` 类的扩展。[在此详细了解 Eloquent 模型。](http://laravel.com/docs/5.1/eloquent)
 
-### Attributes
+### 属性
 
-On Eloquent models, you don't need to worry about defining attributes. You can simply access them as a property of the instance, like `$discussion->is_sticky`. That makes things easy for us!
+在 Eloquent 模型中，你无需为定义属性而烦恼。你可以简单的像在实例中的预设那样调用它，比如 `$discussion->is_sticky`。这一切使得事情变得很简单。
 
-However, there is one exception: If you add a date attribute, you'll need to tell the model that this attribute should be treated as a date. This can be achieved by listening for the `ModelDates` event:
+然而有一个例外：如果你添加了一个日期属性，你需要告诉模型此属性应被视为日期。可通过侦听 `ModelDates` 事件来实现：
 
 ```php
 use Flarum\Core\Discussions\Discussion;
@@ -61,14 +59,14 @@ use Flarum\Events\ModelDates;
 
 $events->listen(ModelDates::class, function (ModelDates $event) {
 	if ($event->model instanceof Discussion) {
-		$event->dates[] = 'stickied_at'; // Treat the stickied_at attribute as a date
+		$event->dates[] = 'stickied_at'; // stickied_at 被作为日期属性
 	}
 });
 ```
 
-### Validation
+### 验证
 
-Every time a model is saved, its data is validated against a set of rules using Laravel's [Validation component](http://laravel.com/docs/5.1/validation). These rules can be modified by extensions so you can perform additional validation on a model's attributes.
+每次保存模型时，其数据将根据使用 [Laravel 验证组件](http://laravel.com/docs/5.1/validation)以一套规则加以验证。这些规则可以被扩展所修改，所以您可以在模型属性上执行额外的验证。
 
 ```php
 use Flarum\Core\Users\User;
@@ -77,14 +75,15 @@ use Flarum\Events\ModelValidator;
 $events->listen(ModelValidator::class, function (ModelValidator $event) {
 	if ($event->model instanceof User) {
 		// Make usernames require at least 5 characters
+        // username 至少 5 个字符
 		$event->validator->mergeRules('username', 'min:5');
 	}
 });
 ```
 
-### Relationships
+### 关系
 
-If you need to define a new relationship for an existing model, you may do so with the `ModelRelationship` event. This event is called when an unknown method/attribute is accessed on a model. If the name of the method matches your relationship's name, you should return an Eloquent Relation object using the model's `hasOne`, `belongsTo`, `belongsToMany`, or [any other relationship method](http://laravel.com/docs/5.1/eloquent-relationships).
+如果您需要对已有的模型定义一个新的关系，你可以使用 `ModelRelationship` 事件加以实现。每个未知的方法或属性连接模型时，都将调用此事件。如果你关系的名称与方法的名称匹配，你应该使之返回一个 Eloquent Relation 对象，该对象应使用模型 `hasOne`, `belongsTo`, `belongsToMany`, 或者 [其他关系方法](http://laravel.com/docs/5.1/eloquent-relationships)。
 
 ```php
 use Flarum\Core\Discussions\Discussion;
@@ -97,18 +96,18 @@ $events->listen(ModelRelationship::class, function (ModelRelationship $event) {
 });
 ```
 
-## Persisting Data
+## 数据持久化
 
-As described in the Introduction, Flarum makes use of the command bus pattern to provide a way for data to be modified. In order to allow any new attributes/relationships on a core entity to be persisted to the database, you will need to be aware of what's going on.
+如介绍中所述，Flarum 使用命令总线模式（译者注：请参见[本文档](http://laravel.com/docs/5.0/bus)。）提供对数据进行修改的方法。为了能够使一个核心实体中的所有新属性/关系保存到数据库，你需要注意会发生什么。
 
-As an example, let's walk through what happens when we make a PATCH request to the `/discussions/123` API endpoint:
+让我们用一个例子来说明这个过程。当我们对 `/discussions/123` 入口点进行 PATCH 请求时，将会进行下列过程：
 
-1. The request is passed to the appropriate API Action class (`Flarum\Api\Actions\Discussions\UpdateAction`).
-2. The action creates a new instance of the `Flarum\Core\Discussions\Commands\EditDiscussion` command, filling it with the request input.
-3. The action dispatches this command to the command bus, which will pass it to the appropriate command handler: `Flarum\Core\Discussions\Commands\EditDiscussionHandler`
-4. The `EditDiscussionHandler` applies changes to the Discussion model based on the command input, and saves the discussion.
+1. 请求传递到合适的 API 行为类 (`Flarum\Api\Actions\Discussions\UpdateAction`)。
+2. 该操作创建 `Flarum\Core\Discussions\Commands\EditDiscussion` 命令的新实例，并把请求输入进行封装。
+3. 该行为把命令发送至命令总线，将其传递给适当的命令处理程序: `Flarum\Core\Discussions\Commands\EditDiscussionHandler`
+4. `EditDiscussionHandler` 将基于命令的输入把更改应用于讨论模型，并保存此讨论。
 
-In step number 4, the `DiscussionWillBeSaved` event is fired. This is an opportunity for extensions to inspect the command input, and apply any additional changes to the model before it is saved.
+在第四步时 `DiscussionWillBeSaved` 事件会被发送。这是在保存前，扩展用来检查输入、并对模型进行的附加修改的时机。
 
 ```php
 use Flarum\Events\DiscussionWillBeSaved;
@@ -120,17 +119,19 @@ $events->listen(DiscussionWillBeSaved::class, function (DiscussionWillBeSaved $e
 });
 ```
 
-## Permissions
+## 权限
 
-Flarum includes a powerful permission system. It allows extensions to define logic that allows or disallows certain users/groups from performing certain actions on certain entities.
+Flarum 包括一个功能强大的权限系统。它使得扩展能自行定义操作逻辑，允许或不允许某些用户或组对某些实体执行特定行为。
 
-### Model Locking
+### 模型锁
 
-Whenever you need to determine if a user can perform an action on a model, you may call the `can()` method on that model (defined in the `Flarum\Core\Support\Locked` trait). This method returns `true` if the user is allowed, or `false` if they are not.
+当你需要确定是否用户可以在模型上执行操作时，可调用该模型的 `can()` 方法 (在 `Flarum\Core\Support\Locked` 中定义) 。当用户被允许就返回 `ture`，反之则为 `false`。
 
-	$allowed = $discussion->can($user, 'sticky');
+```php
+$allowed = $discussion->can($user, 'sticky');
+```
 
-Extensions can hook into this method using the `ModelAllow` event, and return either `true` or `false` to grant or deny permission:
+扩展可以使用 `ModelAllow` 事件挂接于此，返回 `ture` 或 `false` 来授予或拒绝用户相关权限。
 
 ```php
 use Flarum\Core\Discussions\Discussion;
@@ -139,6 +140,7 @@ use Flarum\Events\ModelAllow;
 $events->listen(ModelAllow::class, function (ModelAllow $event) {
 	if ($event->model instanceof Discussion && $event->action === 'sticky') {
 		// Allow the user to sticky the discussion if they authored it
+        // 允许作者置顶自己的讨论
 		if ($event->actor->id === $event->model->user_id) {
 			return true;
 		}
@@ -146,32 +148,37 @@ $events->listen(ModelAllow::class, function (ModelAllow $event) {
 });
 ```
 
-### Priorities
+### 优先级
 
-It's worth noting here that when registering an event listener, you can pass an integer as the third argument to give that event listener a priority. This is particularly useful for the `ModelAllow` event, where the first non-`null` value returned ceases the execution of subsequent event listeners.
+值得注意的是，当注册一个事件监听器时，你可以传递一个整数作为第三参数，从而给事件监听器对应的优先级。这对于 `ModelAllow` 事件相当有用，能使在返回第一个非空值时，停止执行后续的事件监听器。
 
-### Group Permissions
+### 组的权限
 
-Flarum also has a map of groups and the general permissions that they have been granted (according to the Permissions page in the Admin CP). This information is stored in the `permissions` database table, and can be accessed using the `hasPermission()` method on the user model:
+Flarum 具有关于组和对应授予的基本权限的映射（可在后台权限页加以修改）。此信息存储在数据库的权限表中，并可以在用户模型上使用 `hasPermission()` 方法访问:
 
-	$granted = $user->hasPermission('discussion.sticky');
+```php
+$granted = $user->hasPermission('discussion.sticky');
+```
 
-For users in the Administrator group,  this method always returns `true` (i.e. admins are allowed to do everything). Otherwise, it will return `true` or `false` depending on the user's groups and the permission map.
+对管理员组的用户而言，此方法总是返回 `true`（也就是说，管理员有权进行一切事务）。其他情况，它将返回 `true` 或 `false`，具体取决于用户所在的组和对应权限映射。
 
-This system is used in conjunction with the model locking system to allow users to perform certain actions if they are in a group that has been granted a general permission. By default, checking if a user can perform a certain action on a discussion model will check for a group permission named `discussion.{action}`. The same goes for posts, users, and groups.
+这个系统与模块锁系统相连接，从而使得在被授权的某组中的用户能做规定的行为。默认情况下，在 `discussion` 模块上检查用户是否能做对应行为时，会检查其所在组的 `discussion.{action}` 许可。对于 `posts`、`users`和`groups`上亦如此。
 
-To learn how to add permission settings in the Administrator CP, see the [Administration]({{ site.baseurl }}/docs/extend/admin) section.
+若要了解如何在后台中添加权限设置，请参阅 [管理](admin.md) 章节。
 
-### Visibility Scopes
+### 可见范围
 
-Model locking is only useful when checking permissions on a model that has already been fetched from the database. In order to filter which models should be fetched from the database in the first place (i.e. determine which discussions/posts are visible to the user), Flarum uses a mechanism called **visibility scopes**.
+模块锁仅在检查已取得数据库的模型时有用。为了筛选哪种模式应该最先从数据库中取出 (比如确定哪些讨论/帖子是对用户可见的)，Flarum 使用一种机制称为**可见范围**。
 
-A visibility scope is simply a set of query conditions that can be applied when querying the database for a model. The scope can be applied using the `whereVisibleTo()` method (defined in the `Flarum\Core\Support\VisibleScope` trait):
+可见范围只是一套能在查询数据库模型时可应用的条件语句。可以使用 `whereVisibleTo()` 方法应用此范围（该方法在`Flarum\Core\Support\VisibleScope`中定义）:
 
-	// Only get discussions which are visible to $user
-	$discussions = Discussion::whereVisibleTo($user)->get();
-	
-Extensions can hook into this method using the `ScopeModelVisibility` event, and apply conditions to the query builder:
+```php
+// Olny get discussions which are visible to $user
+// 仅获取对 $user 用户可见的帖子
+$discussions = Discussion::whereVisibleTo($user)->get();
+```
+
+扩展可以使用 `ScopeModelVisibility` 事件挂接于此，应用限定条件于查询生成器：
 
 ```php
 use Flarum\Core\Discussions\Discussion;
@@ -180,15 +187,22 @@ use Flarum\Events\ScopeModelVisibility;
 $events->listen(ScopeModelVisibility::class, function (ScopeModelVisibility $event) {
 	if ($event->model instanceof Discussion) {
 		// Only let the user see discussions which they started
+        // 用户只能看到自己发起的讨论
 		$event->query->where('start_user_id', $event->actor->id);
 	}
 });
 ```
 
-#### Post Visibility Scope
+#### 帖子可见范围
 
 A similar pattern is used to filter a discussion's posts to only those that are visible to the user:
 
-	$posts = $discussion->postsVisibleTo($user)->get();
-	
-Similarly, extensions can hook into this method using the `ScopePostVisibility` event, and apply conditions to the query builder. The discussion whose posts are being queried is passed in the event.
+我们使用一个简单的模式来筛选用户可见帖子：
+
+```php
+$posts = $discussion->postsVisibleTo($user)->get();
+```
+
+同样地，扩展可使用 `ScopePostVisibility` 事件来挂接到此方法，并对查询生成器应用限定条件。查询帖子的讨论在此事件传递。
+
+> 译者：[@ttnl](https://github.com/ttnl)
