@@ -1,16 +1,16 @@
 # API
 
-As mentioned in the Introduction, the Flarum exposes a **public JSON API which can read and write the forum's data**. It conforms to the [JSON-API 1.0 specification](http://jsonapi.org).
+正如介绍所述，Flarum 有一个**公开的 JSON API 允许你读写论坛数据**。它符合 [JSON-API 1.0 规范](http://jsonapi.org.cn)。
 
-In this section we will explore in-depth how to extend Flarum's API.
+在本节中我们将深入探讨如何扩展 Flarum 的 API。
 
-## JSON-API & Serializers
+## JSON-API 和序列化程序（Serializers)
 
-Flarum makes use of the [tobscure/json-api](https://github.com/tobscure/json-api) library to output data in a format that complies with the JSON-API specification. This involves the use of Serializers, which are classes that transform Flarum's domain data into a publicly-consumable format. Serializers are found under the `Flarum\Api\Serializers` namespace.
+Flarum 使用 [tobscure/json-api](https://github.com/tobscure/json-api) 库来输出符合 JSON-API 规范的格式化数据。这涉及序列化程序的使用，该程序是 `Flarum\Api\Serializers` 命名空间下的一个类，能将 Flarum 的数据转换成一个可被公开接受的格式。
 
-### Attributes
+### 属性
 
-Serialized attributes can be added or modified using the `ApiAttributes` event:
+可使用 `ApiAttributes` 事件对序列化程序进行增改：
 
 ```php
 use Flarum\Api\Serializers\DiscussionSerializer;
@@ -24,9 +24,9 @@ $events->listen(ApiAttributes::class, function (ApiAttributes $event) {
 });
 ```
 
-### Relationships
+### 关系
 
-New relationships can be added to a serializer using the `ApiRelationship` event. Flarum's base Serializer class provides two handy methods (`hasOne` and `hasMany`) which will construct a Tobscure\JsonApi\Relationship object using relation data from the model being serialized.
+可使用 `ApiRelationship` 事件来添加新的关系模型。Flarum 的底层 Serializer 类提供了两个方便的方法( `hasOne` 和 `hasMany`) ，可构建一个 `Tobscure\JsonApi\Relationship` 对象，来利用被序列化程序处理好的模型。
 
 ```php
 use Flarum\Api\Serializers\DiscussionSerializer;
@@ -39,17 +39,17 @@ $events->listen(ApiRelationship::class, function (ApiRelationship $event) {
 });
 ```
 
-In order for relationships to be linked or included in the response document, you must add the relationship to the appropriate Actions – see below.
+为使这些关系能被对应文档所链接或包含，你必须把关系与适当的行为加以联系 ―― 阅读下面。
 
-## Actions
+## 行为
 
-Flarum's API endpoints are defined in `Flarum\Api\ApiServiceProvider`. Each endpoint routes to a corresponding **Action** class, which is essentially a controller. The Action class will receive a `Flarum\Api\Request` object, and should return PSR-7 Response.
+Flarum 的 API 端点(endpoint)是在 `Flarum\Api\ApiServiceProvider` 中定义的。每个端点都与一个对应的**行为（Action）**类以路由的方式加以连接，该类实际上是一个控制器。这个行为类应能接受一个 `Flarum\Api\Request` 对象，并以 PSR-7 格式响应。
 
-There are a number of abstract Action classes in the `Flarum\Api\Actions` namespace that can be extended to easily implement CRUD actions. These include the `SerializeResourceAction` and `SerializeCollectionAction` classes, which do all the work of setting up and passing data through a Serializer for you. Children are only required to implement the `data` method and return an Eloquent Model or Collection.
+在 `Flarum\Api\Action` 命名空间下有大量的抽象行为类，可被扩展以轻易地实现数据库操作（译注：原文作 CRUD actions, 请参见[维基百科](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)）。其中包括 `SerializeResourceAction` 和 `SerializeCollectionAction` 类，这两个类将为你进行设置和在序列化程序中传递数据的所有工作。初学者仅需实现 `data` 方法并以 Eloquent 模型（译注：此为 Laravel 功能，请参见[官方文档](http://laravel.com/api/5.0/Illuminate/Database/Eloquent/Model.html)） 或集合(Collection)形式返回即可。
 
-### Altering Action Properties
+### 更改行为属性
 
-The `data` method receives a request object with a few extra parameters: sort, include, link, limit, and offset. These parameters are sanitized using properties on the action class; These properties may be modified by extensions using the `BuildApiAction` event in order to permit new relationships to be included, new fields to be sorted by, and more.
+`data` 方法接受一个请求对象和几个额外的参数：`sort`，`include`，`link`，`limit` 和 `offset`。这些参数使用行为类中的配置来进行处理，这些配置可被扩展程序使用 `BuildApiAction` 事件进行修改，以允许添加新的关系、新的可排序字段，诸如此类。 
 
 ```php
 use Flarum\Api\Actions\Discussions;
@@ -66,9 +66,9 @@ $events->listen(BuildApiAction::class, function (BuildApiAction $event) {
 });
 ```
 
-### Adding an Endpoint
+### 添加 API 端点
 
-If you need to add a new API endpoint, you can extend any of the base Action classes, and then register a new route using the `RegisterApiRoutes` event:
+如果您需要添加一个新的 API 端点，可从任何 Action 基类加以扩展，然后使用 `RegisterApiRoutes` 事件注册新路由即可：
 
 ```php
 use Flarum\Events\RegisterApiRoutes;
@@ -81,3 +81,4 @@ $events->listen(RegisterApiRoutes::class, function (RegisterApiRoutes $event) {
     );
 });
 ```
+> 译者：[@ttnl](https://github.com/ttnl)
