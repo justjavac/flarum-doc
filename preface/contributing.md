@@ -2,7 +2,7 @@
 
 ## 报告漏洞
 
-如果你发现了一个漏洞，我们愿闻其详。请记住，漏洞报告的目标是使我们能轻松地复现此漏洞，并开发出对应补丁。因此，你应该提供尽可能多的相关信息，并且用清晰且基于事实的语言与我们沟通。[这篇文章](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)是关于如何有效报告漏洞的绝佳材料。
+如果你发现了一个漏洞，我们愿闻其详。请记住，漏洞报告的目标是使我们能轻松地重现此漏洞，并开发出对应补丁。因此，你应该提供尽可能多的相关信息，并且用清晰且基于事实的语言与我们沟通。[这篇文章](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)是关于如何有效报告漏洞的绝佳材料。
 
 如需报告漏洞，请在以下的 Github 库中创建问题（issue）：
 
@@ -21,9 +21,9 @@
 
 ## 贡献代码
 
-希望帮助我们构建 Flarum？真是太棒了！我们欢迎贡献，并以 Pull Requests 的方式接受。请在提交任何 Pull Requests 前先阅读这些指导。
+想帮助我们构建 Flarum？真是太棒了！我们欢迎贡献，并以 Pull Requests 的方式接受。请在提交任何 Pull Requests 前先阅读这些指导。
 
-查阅[路线图](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)来获得需要做些什么的概述。为使人们能尽量轻松地开始参与贡献 Flarum，我们已对 Github 上的很多问题都做了详细的说明。这些说明包括了该做什么、去哪里做的指示。[来看看有没有什么你喜欢做的!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
+查阅[路线图](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)来了解需要做些什么。为使人们能尽量轻松地开始参与贡献 Flarum，我们已对 Github 上的很多问题都做了详细的说明。这些说明包括了该做什么、去哪里做的指示。[来看看有没有什么你喜欢做的!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
 
 ### 开发环境
 
