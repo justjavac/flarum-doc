@@ -6,15 +6,15 @@
 
 ## 迁移
 
-如果您的扩展引入了一种新型的实体 (如标签)，或者将新属性添加到了一个现有的实体 (例如 `discussions` 的 `is_sticky` 属性)，那么你需要更新 Flarum 的数据库架构，以便新数据能被存储。
+如果您的扩展引入了一种新的实体 (如标签)，或者将新属性添加到了一个现有的实体 (例如 `discussions` 的 `is_sticky` 属性)，那么你需要更新 Flarum 的数据库架构，来存储新的数据。
 
-可通过**迁移（migrations）**来实现这一工作；Flarum 中的迁移基于 [Laravel的实现](http://laravel.com/docs/5.1/migrations)。迁移文件必须被放置在你扩展的 `migrations` 文件夹下，命名时应包括时间戳和对其所作修改的描述，如下所示：
+可通过**迁移（migrations）**来实现这一工作；Flarum 中的迁移基于 [Laravel 的实现](http://laravel.com/docs/5.1/migrations)。迁移文件必须放在扩展的 `migrations` 文件夹下，命名时应包括时间戳和对其所作修改的描述，如下所示：
 
 	2015_02_24_000000_create_tags_table.php
 
-此文件应该包括一个扩展自 `Flarum\Migrations\Migration` 的类，并附有相同的描述。每个迁移类包括两个方法：`up` 和 `down`。`up` 方法在你的扩展启用时便会启动（如果该迁移以前没有进行过），因此你可以添加在数据库中添加新的表、列、索引等等，亦可执行其他安装操作。`down` 操作在扩展卸载时被调用，应能够回滚 `up` 操作所执行的行为。
+此文件应该包括一个扩展自 `Flarum\Migrations\Migration` 的类，并附有相同的描述。每个迁移类包括两个方法：`up` 和 `down`。`up` 方法在你的扩展启用时调用（如果该迁移以前没有进行过），因此你可以在数据库中添加新的表、列、索引等等，亦可执行其他安装操作。`down` 操作在扩展卸载时被调用，应能够回滚 `up` 操作所执行的行为。
 
-迁移可调用 `$schema` 变量，此为 [Laravel 的架构生成器](http://laravel.com/docs/5.1/migrations#writing-migrations)的一个实例，可被用来对数据库架构进行调整：
+迁移可调用 `$schema` 变量，此为 [Laravel 的架构生成器](http://laravel.com/docs/5.1/migrations#writing-migrations)的一个实例，用来对数据库架构进行调整：
 
 ```php
 use Illuminate\Database\Schema\Blueprint;
@@ -39,17 +39,17 @@ class CreateTagsTable extends Migration
 }
 ```
 
-如需在不重新启用某扩展运行新的迁移，只需简单地执行升级命令即可：
+如果需要在不重新启用某个扩展的情况下运行迁移，只需简单地执行升级命令即可：
 
 	php flarum upgrade
 
 ## 扩展模型
 
-为了使用您设置的新数据库结构，你将需要创建新的模型(Model)或对现有的模型加以扩展。在Flarum 中，每个模型都扩展自 `Flarum\Core\Model`，此亦为 Laravel 的 `Eloquent\Model` 类的扩展。[在此详细了解 Eloquent 模型。](http://laravel.com/docs/5.1/eloquent)
+为了使用您设置的新数据库结构，你需要创建新的模型(Model)或对现有的模型加以扩展。在 Flarum 中，每个模型都扩展自 `Flarum\Core\Model`，此亦为 Laravel 的 `Eloquent\Model` 类的扩展。[在此详细了解 Eloquent 模型。](http://laravel.com/docs/5.1/eloquent)
 
 ### 属性
 
-在 Eloquent 模型中，你无需为定义属性而烦恼。你可以简单的像在实例中的预设那样调用它，比如 `$discussion->is_sticky`。这一切使得事情变得很简单。
+在 Eloquent 模型中，你无需为定义属性而烦恼。你可以像调用实例的属性一样调用它，比如 `$discussion->is_sticky`。这一切使得事情变得很简单。
 
 然而有一个例外：如果你添加了一个日期属性，你需要告诉模型此属性应被视为日期。可通过侦听 `ModelDates` 事件来实现：
 
@@ -66,7 +66,7 @@ $events->listen(ModelDates::class, function (ModelDates $event) {
 
 ### 验证
 
-每次保存模型时，其数据将根据使用 [Laravel 验证组件](http://laravel.com/docs/5.1/validation)以一套规则加以验证。这些规则可以被扩展所修改，所以您可以在模型属性上执行额外的验证。
+每次保存模型时，其数据将根据使用 [Laravel 验证组件](http://laravel.com/docs/5.1/validation)以一套规则加以验证。扩展可以修改这些规则，所以您可以在模型属性上执行额外的验证。
 
 ```php
 use Flarum\Core\Users\User;
@@ -83,7 +83,7 @@ $events->listen(ModelValidator::class, function (ModelValidator $event) {
 
 ### 关系
 
-如果您需要对已有的模型定义一个新的关系，你可以使用 `ModelRelationship` 事件加以实现。每个未知的方法或属性连接模型时，都将调用此事件。如果你关系的名称与方法的名称匹配，你应该使之返回一个 Eloquent Relation 对象，该对象应使用模型 `hasOne`, `belongsTo`, `belongsToMany`, 或者 [其他关系方法](http://laravel.com/docs/5.1/eloquent-relationships)。
+如果您需要对已有的模型定义一个新的关系，可以使用 `ModelRelationship` 事件。每个未知的方法或属性连接模型时，都将调用此事件。如果你关系的名称与方法的名称匹配，你应该使之返回一个 Eloquent Relation 对象，该对象应使用模型 `hasOne`, `belongsTo`, `belongsToMany`, 或者 [其他关系方法](http://laravel.com/docs/5.1/eloquent-relationships)。
 
 ```php
 use Flarum\Core\Discussions\Discussion;
@@ -105,7 +105,7 @@ $events->listen(ModelRelationship::class, function (ModelRelationship $event) {
 1. 请求传递到合适的 API 行为类 (`Flarum\Api\Actions\Discussions\UpdateAction`)。
 2. 该操作创建 `Flarum\Core\Discussions\Commands\EditDiscussion` 命令的新实例，并把请求输入进行封装。
 3. 该行为把命令发送至命令总线，将其传递给适当的命令处理程序: `Flarum\Core\Discussions\Commands\EditDiscussionHandler`
-4. `EditDiscussionHandler` 将基于命令的输入把更改应用于讨论模型，并保存此讨论。
+4. `EditDiscussionHandler` 根据输入的命令，对讨论模型进行修改，并保存此讨论。
 
 在第四步时 `DiscussionWillBeSaved` 事件会被发送。这是在保存前，扩展用来检查输入、并对模型进行的附加修改的时机。
 
@@ -162,7 +162,7 @@ $granted = $user->hasPermission('discussion.sticky');
 
 对管理员组的用户而言，此方法总是返回 `true`（也就是说，管理员有权进行一切事务）。其他情况，它将返回 `true` 或 `false`，具体取决于用户所在的组和对应权限映射。
 
-这个系统与模块锁系统相连接，从而使得在被授权的某组中的用户能做规定的行为。默认情况下，在 `discussion` 模块上检查用户是否能做对应行为时，会检查其所在组的 `discussion.{action}` 许可。对于 `posts`、`users`和`groups`上亦如此。
+这个系统与模块锁系统相连接，从而使得在被授权的某组中的用户能做规定的行为。默认情况下，在 `discussion` 模块上检查用户是否能做对应行为时，会检查其所在组的 `discussion.{action}` 许可。对于 `posts`、`users` 和 `groups` 上亦如此。
 
 若要了解如何在后台中添加权限设置，请参阅 [管理](admin.md) 章节。
 
@@ -170,7 +170,7 @@ $granted = $user->hasPermission('discussion.sticky');
 
 模块锁仅在检查已取得数据库的模型时有用。为了筛选哪种模式应该最先从数据库中取出 (比如确定哪些讨论/帖子是对用户可见的)，Flarum 使用一种机制称为**可见范围**。
 
-可见范围只是一套能在查询数据库模型时可应用的条件语句。可以使用 `whereVisibleTo()` 方法应用此范围（该方法在`Flarum\Core\Support\VisibleScope`中定义）:
+可见范围只是一套能在查询数据库模型时可应用的条件语句。可以使用 `whereVisibleTo()` 方法应用此范围（该方法在`Flarum\Core\Support\VisibleScope` 中定义）:
 
 ```php
 // Olny get discussions which are visible to $user
@@ -195,14 +195,12 @@ $events->listen(ScopeModelVisibility::class, function (ScopeModelVisibility $eve
 
 #### 帖子可见范围
 
-A similar pattern is used to filter a discussion's posts to only those that are visible to the user:
-
 我们使用一个简单的模式来筛选用户可见帖子：
 
 ```php
 $posts = $discussion->postsVisibleTo($user)->get();
 ```
 
-同样地，扩展可使用 `ScopePostVisibility` 事件来挂接到此方法，并对查询生成器应用限定条件。查询帖子的讨论在此事件传递。
+同样地，扩展可使用 `ScopePostVisibility` 事件来挂接到此方法，并对查询生成器应用限定条件。此事件包含了对帖子讨论的查询。
 
 > 译者：[@ttnl](https://github.com/ttnl)
