@@ -26,7 +26,7 @@ $events->listen(ApiAttributes::class, function (ApiAttributes $event) {
 
 ### 关系
 
-可使用 `ApiRelationship` 事件来添加新的关系模型。Flarum 的底层 Serializer 类提供了两个方便的方法( `hasOne` 和 `hasMany`) ，可构建一个 `Tobscure\JsonApi\Relationship` 对象，来利用被序列化程序处理好的模型。
+可使用 `ApiRelationship` 事件来添加新的关系模型。Flarum 的底层 Serializer 类提供了两个方便的方法(`hasOne` 和 `hasMany`) ，可构建一个 `Tobscure\JsonApi\Relationship` 对象，用来处理模型之间的关系。
 
 ```php
 use Flarum\Api\Serializers\DiscussionSerializer;
@@ -43,13 +43,13 @@ $events->listen(ApiRelationship::class, function (ApiRelationship $event) {
 
 ## 行为
 
-Flarum 的 API 端点(endpoint)是在 `Flarum\Api\ApiServiceProvider` 中定义的。每个端点都与一个对应的**行为（Action）**类以路由的方式加以连接，该类实际上是一个控制器。这个行为类应能接受一个 `Flarum\Api\Request` 对象，并以 PSR-7 格式响应。
+Flarum 的 API 端点(endpoint) 在 `Flarum\Api\ApiServiceProvider` 中定义。通过路由（route），每个端点都与一个对应的**行为（Action）类**相连接，该类实际上是一个控制器。这个行为类可以接受一个 `Flarum\Api\Request` 对象，并以 PSR-7 格式响应。
 
-在 `Flarum\Api\Action` 命名空间下有大量的抽象行为类，可被扩展以轻易地实现数据库操作（译注：原文作 CRUD actions, 请参见[维基百科](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)）。其中包括 `SerializeResourceAction` 和 `SerializeCollectionAction` 类，这两个类将为你进行设置和在序列化程序中传递数据的所有工作。初学者仅需实现 `data` 方法并以 Eloquent 模型（译注：此为 Laravel 功能，请参见[官方文档](http://laravel.com/api/5.0/Illuminate/Database/Eloquent/Model.html)） 或集合(Collection)形式返回即可。
+在 `Flarum\Api\Action` 命名空间下有大量的抽象行为类，可以扩展这些类来方便地实现数据库操作（译注：原文作 CRUD actions, 请参见[维基百科](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)）。其中包括 `SerializeResourceAction` 和 `SerializeCollectionAction` 类，这两个类将为你进行设置和在序列化程序中传递数据的所有工作。初学者仅需实现 `data` 方法并以 Eloquent 模型（译注：此为 Laravel 功能，请参见[官方文档](http://laravel.com/api/5.0/Illuminate/Database/Eloquent/Model.html)） 或集合(Collection)形式返回即可。
 
 ### 更改行为属性
 
-`data` 方法接受一个请求对象和几个额外的参数：`sort`，`include`，`link`，`limit` 和 `offset`。这些参数使用行为类中的配置来进行处理，这些配置可被扩展程序使用 `BuildApiAction` 事件进行修改，以允许添加新的关系、新的可排序字段，诸如此类。 
+`data` 方法接受一个请求对象和几个额外的参数：`sort`，`include`，`link`，`limit` 和 `offset`。这些参数使用行为类中的配置来进行处理，扩展程序可以使用 `BuildApiAction` 事件修改这些配置，以允许添加新的关系、新的可排序字段，诸如此类。 
 
 ```php
 use Flarum\Api\Actions\Discussions;
