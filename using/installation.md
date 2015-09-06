@@ -3,7 +3,7 @@
 ## 系统需求
 
 - 服务器： Apache (需要支持 mod_rewrite) 、Nginx
-- PHP 5.5+
+- PHP 5.5+，需要开启的扩展：mbstring, pdo_mysql, openssl, json, gd, dom, fileinfo
 - MySQL 5.5+
 
 ## 在线安装
