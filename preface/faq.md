@@ -5,7 +5,7 @@
 在着手做任何事之前，我们希望您能够先检查以下几个地方，看看你的想法是否已经被提到：
 
 * 浏览 [Features](http://flarum.org/features/) 页面，以知悉我们已推出的功能和即将推出的功能；
-* 浏览 [Roadmap](https://github.com/flarum/core/issues/74) 页面，以了解我们正计划实施些什么；
+* 浏览 [Roadmap](https://github.com/justjavac/flarum/issues/3) 页面，以了解我们正计划实施些什么；
 * 在 Github 上搜索 [issues](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aflarum+)，以确定你的想法是否已经纳入开发计划；
 * 在[论坛](http://discuss.flarum.org)上搜索，看看你的想法有没有已经被讨论过。
 
@@ -15,7 +15,7 @@
 
 ## 什么时候发布 Flarum 正式版？
 
-我们也不能保证什么时候可以发布——因为中间的变数太多！不过，你可以按照 [Roadmap](https://github.com/flarum/core/issues/74) 关注我们的开发进度。
+我们也不能保证什么时候可以发布——因为中间的变数太多！不过，你可以按照 [Roadmap](https://github.com/justjavac/flarum/issues/3) 关注我们的开发进度。
 
 ## 我能把我的论坛迁移到 Flarum 么？
 

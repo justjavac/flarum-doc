@@ -23,7 +23,7 @@
 
 想帮助我们构建 Flarum？真是太棒了！我们欢迎贡献，并以 Pull Requests 的方式接受。请在提交任何 Pull Requests 前先阅读这些指导。
 
-查阅[路线图](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)来了解需要做些什么。为使人们能尽量轻松地开始参与贡献 Flarum，我们已对 Github 上的很多问题都做了详细的说明。这些说明包括了该做什么、去哪里做的指示。[来看看有没有什么你喜欢做的!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
+查阅[路线图](https://github.com/justjavac/flarum/issues/3)来了解需要做些什么。为使人们能尽量轻松地开始参与贡献 Flarum，我们已对 Github 上的很多问题都做了详细的说明。这些说明包括了该做什么、去哪里做的指示。[来看看有没有什么你喜欢做的!](https://github.com/issues?utf8=✓&q=is%3Aopen+is%3Aissue+user%3Aflarum+)
 
 ### 开发环境
 
