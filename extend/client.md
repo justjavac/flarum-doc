@@ -1,18 +1,18 @@
 # 客户端
 
-在简介一节中我们提到，客户端层暴露了一个供人类使用的**用户界面**。
-客户端由两部分组成：一个只读的简单 HTML 页面和一个可交互的单页 JavaScript 应用。两者都从 JSON API 读取数据。
+在[简介](introduction.md)一节中我们提到，客户端层暴露了一个供人类使用的**用户界面**。
+客户端由两部分组成：一个只读的简单 HTML 页面和一个可交互的单页 JavaScript 应用。两者都从 [JSON API](http://jsonapi.org.cn) 读取数据。
 
 ## 路由
 
 论坛所有的默认路由都在 `Flarum\Forum\ForumServiceProvider` 中注册。每个路由有一个对应的 **Action** （动作）类，
 这个类本质上就是控制器。每个动作接受一个 [PSR-7](https://github.com/php-fig/http-message) 请求，并返回一个响应。
 
-`Flarum\Forum\Actions\ClientAction` 是动作类的基类，它会构建一个 ClientView 实例，并将这个实例回应给客户端。
-ClientView 是一个高度可定制的、包括前端 JavaScript 应用所需要的所有资源文件的主模板。例如你可以：
+`Flarum\Forum\Actions\ClientAction` 是动作类的基类，它会构建一个 `ClientView` 实例，并将这个实例回应给客户端。
+`ClientView` 是一个高度可定制的、包括前端 JavaScript 应用所需要的所有资源文件的主模板。例如你可以：
 
 * 用 `setTitle()` 设置文档标题。
-* 用 `setContent()`设置页面的 SEO 内容（在 `<noscript>` 标签中显示的内容）。
+* 用 `setContent()` 设置页面的 SEO 内容（在 `<noscript>` 标签中显示的内容）。
 * 用 `setDocument()` 设置页面中需要预加载的 API 响应。
 * 用 `addHeadString()` 或 `addFootString()` 在页面的头部或尾部添加 HTML 内容。
 
@@ -30,7 +30,7 @@ $events->listen(RegisterForumRoutes::class, function (RegisterForumRoutes $event
 });
 ```
 
-定义响应请求的动作类（第三个参数）是可选的。如果没有指定，Flarum 会用默认的空白 ClientAction 来响应。
+定义响应请求的动作类（第三个参数）是可选的。如果没有指定，Flarum 会用默认的空白 `ClientAction` 来响应。
 
 ## JavaScript 应用
 
@@ -71,9 +71,8 @@ $events->listen(BuildClientView::class, function (BuildClientView $event) {
 在加载器中注册了你的 `main` 模块后，前端应用会在开始执行真正的逻辑前运行你在 `js/forum/src/main.js` 中写的代码。
 这样，你的扩展就有机会修改你想要改的东西了。
 
-在简介一节中我们曾一笔带过的提到我们可以通过 monkey-patching 替换函数。Flarum 提供了两个帮助你操作的函数。
-这两个函数是 `extend` 和 `override` ，可以通过 `flarum/extend` 导入。
-调用这两个函数时，只需传入你想要修改的对象（通常来说是某个类的原型）、你想要修改的属性和一个回调函数即可。
+在[简介](introduction.md)一节中我们曾一笔带过的提到我们可以通过 monkey-patching 替换函数。Flarum 提供了两个帮助你操作的函数。
+这两个函数是 `extend` 和 `override` ，可以通过 `flarum/extend` 导入。调用这两个函数时，只需传入你想要修改的对象（通常来说是某个类的原型）、你想要修改的属性和一个回调函数即可。
 
 `extend` 函数中，回调函数是在原来的方法 *运行完之后* 被调用的。它会把原来的执行结果传入你的回调函数，这样你可以修改返回值。
 
@@ -135,7 +134,7 @@ class WelcomeMessage extends Component {
 ```
 
 一个组件可以通过 `config()` 方法和它的根 DOM 元素互动。这个方法和 Mithril 的 `config` API 几乎是一样的实现，
-只有一点不同：它没有传入第一个参数（ `element` ）。你可以用 `$()` 来操作这个元素，就像用一个 jQuery 对象一样。
+只有一点不同：它没有传入第一个参数（`element`）。你可以用 `$()` 来操作这个元素，就像用一个 jQuery 对象一样。
 
 ```javascript
 config(isInitialized, context) {
@@ -166,7 +165,7 @@ items.toArray(); // ['Qux', 'Baz']
 ```
 
 许多组件和其它的实用工具会返回一个 `ItemList` 的实例（通常来说它们的方法名字以 Items 结尾）。
-例如， `CommentPost` 组件的 `headerItems()` 方法就返回一个 ItemList 的实例，其中包含每条帖子的头部。
+例如， `CommentPost` 组件的 `headerItems()` 方法就返回一个 `ItemList` 的实例，其中包含每条帖子的头部。
 你可以用运行时扩展来修改它们：
 
 ```javascript
@@ -259,3 +258,5 @@ app.routes.tag = {path: '/tag/{slug}', component: TagPage.component()};
 ```javascript
 <a href={app.route('tag', {slug: 'blog'})} config={m.route}>博客</a>
 ```
+
+> 译者：[@oott123](https://github.com/oott123)

@@ -33,7 +33,7 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 打包 100% [@theFool32](https://github.com/theFool32)
   * 扩展域 100% [@ttnl](https://github.com/ttnl)
   * 扩展 API 100% [@ttnl](https://github.com/ttnl)
-  * 扩展客户端
+  * 扩展客户端 100% [@oott123](https://github.com/oott123)
   * 主题 100% [@Seevil](https://github.com/Seevil)
   * 本地化 100% [@justjavac](https://github.com/justjavac)
   * 分发 100% [@ttnl](https://github.com/ttnl)
