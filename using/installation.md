@@ -10,17 +10,17 @@
 
 1. 下载安装包，解压，上传文件到服务器
 2. 访问域名根目录
-3. 填写网址信息：如网站名称、管理员信息、数据库信息，点击“Install Flarum”按钮
+3. 填写网址信息：如网站名称、管理员信息、数据库信息，点击 “Install Flarum” 按钮
 
 ## 命令行安装
 
 1. 下载安装包，解压，上传文件到服务器
-2. 进入根目录，运行 php flarum/flarum install.
+2. 进入根目录，运行 `php flarum/flarum install`
 3. 填写网址信息：如网站名称、管理员信息、数据库信息
 
-## URL重写
+## URL 重写
 
-在安装和运行Flarum之前，您需要设置URL重写规则。 Flarum附带了一个Apache的.htaccess文件，此文件包含了需要用到的规则。 如果您使用的是其他web服务器，您需要在配置文件中添加以下规则：
+在安装和运行 Flarum 之前，您需要设置 URL 重写规则。Flarum 附带了一个 Apache 的 .htaccess 文件，此文件包含了需要用到的规则。 如果您使用的是其他 web 服务器，您需要在配置文件中添加以下规则：
 
 **Nginx**
 
@@ -52,7 +52,7 @@ location ~ .php$ {
 
 ## SMTP
 
-目前还没有配置SMTP的图形化界面 ([#258](https://github.com/flarum/core/issues/258))，但您可以手动修改数据库的 `config` 表：
+目前还没有配置 SMTP 的图形化界面 ([#258](https://github.com/flarum/core/issues/258))，但您可以手动修改数据库的 `config` 表：
 
 ```
 mail_driver: smtp
