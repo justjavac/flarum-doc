@@ -34,16 +34,16 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 扩展 API 100% [@ttnl](https://github.com/ttnl)
   * 扩展客户端 100% [@oott123](https://github.com/oott123)
   * 主题 100% [@Seevil](https://github.com/Seevil)
-  * 本地化 100% [@justjavac](https://github.com/justjavac)
+  * 国际化
   * 分发 100% [@ttnl](https://github.com/ttnl)
   * 管理
   * 格式化
   * 通知
   * 帖子
   * 搜索
-* Translating Flarum
-  * [Introduction](introduction.md)
-  * [Packaging](packaging.md)
-  * [Localization](localization.md)
-  * [Updating](updating.md)
-  * [Distribution](distribution.md)
+* 翻译Flarum
+  * 介绍 
+  * 打包 
+  * 本地化 100% [@justjavac](https://github.com/justjavac)
+  * 升级 
+  * 分发 

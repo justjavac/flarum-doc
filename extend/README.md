@@ -6,7 +6,7 @@
 * [扩展 API](api.md)
 * [扩展客户端](client.md)
 * [主题](themes.md)
-* [本地化](localization.md)
+* [国际化](internationalization.md)
 * [分发](distribution.md)
 * [管理](admin.md)
 * [格式化](formatting.md)
