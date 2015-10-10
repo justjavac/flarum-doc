@@ -9,7 +9,7 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
     POST /api/token HTTP/1.1
 
     {
-        "idenitification": "Toby",
+        "identification": "Toby",
         "password": "pass7word"
     }
     
