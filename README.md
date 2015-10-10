@@ -41,3 +41,9 @@ GitBook https://www.gitbook.com/book/justjavac/flarum/details
   * 通知
   * 帖子
   * 搜索
+* Translating Flarum
+  * [Introduction](introduction.md)
+  * [Packaging](packaging.md)
+  * [Localization](localization.md)
+  * [Updating](updating.md)
+  * [Distribution](distribution.md)
