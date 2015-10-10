@@ -4,20 +4,7 @@
 
 如果你发现了一个漏洞，我们愿闻其详。请记住，漏洞报告的目标是使我们能轻松地重现此漏洞，并开发出对应补丁。因此，你应该提供尽可能多的相关信息，并且用清晰且基于事实的语言与我们沟通。[这篇文章](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)是关于如何有效报告漏洞的绝佳材料。
 
-如需报告漏洞，请在以下的 Github 库中创建问题（issue）：
-
-- [**核心(Core)**](https://github.com/flarum/core)
-- [BBCode](https://github.com/flarum/bbcode)
-- [表情(Emoji)](https://github.com/flarum/emoji)
-- [喜欢（赞）(Like)](https://github.com/flarum/likes)
-- [锁(Lock)](https://github.com/flarum/lock) 
-- [Markdown](https://github.com/flarum/markdown)
-- [提到(Mentions)](https://github.com/flarum/mentions)
-- [推送器(Pusher)](https://github.com/flarum/pusher)
-- [置顶(Sticky)](https://github.com/flarum/sticky)
-- [订阅(Subscriptions)](https://github.com/flarum/Subscriptions)
-- [暂停(Suspend)](https://github.com/flarum/suspend)
-- [标签(Tags)](https://github.com/flarum/tags)
+如需报告漏洞，请在 Github 上的 [flarum/core](https://github.com/flarum/core/issues) 库中创建问题（issues）。在提交 issues 之前，请搜索一下之前的 issues。
 
 ## 贡献代码
 
