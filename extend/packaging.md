@@ -25,7 +25,7 @@ php flarum/flarum generate:extension
 * **flarum.json** 包含你扩展的元信息(标题、描述、作者、依赖项)。更多信息请往下看。
 * **js/** 存放扩展的 JavaScript 文件。你将在[扩展客户端](client.md)了解到更多。
 * **less/** 存放扩展的 CSS 文件。你将在[主题](theming.md)了解到更多。
-* **locale/** 存放扩展的翻译文件。你将在[本地化](localization.md)了解到更多。
+* **locale/** 存放扩展的翻译文件。你将在[国际化](internationalization.md)了解到更多。
 * **migrations/** 当扩展被安装/升级/卸载时会运行数据迁移。你将在[域扩展](domain.md)了解到更多。
 * **src/** 存放扩展的后端源代码，将被使用 PSR-4 标准的 Composer 自动加载。
 

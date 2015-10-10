@@ -2,7 +2,7 @@
 
 ## 系统需求
 
-- 服务器： Apache (需要支持 mod_rewrite) 、Nginx
+- 服务器： Apache (需要支持 mod_rewrite)、Nginx、Lighttpd
 - PHP 5.5+，需要开启的扩展：mbstring, pdo_mysql, openssl, json, gd, dom, fileinfo
 - MySQL 5.5+
 
@@ -22,7 +22,7 @@
 
 在安装和运行 Flarum 之前，您需要设置 URL 重写规则。Flarum 附带了一个 Apache 的 .htaccess 文件，此文件包含了需要用到的规则。 如果您使用的是其他 web 服务器，您需要在配置文件中添加以下规则：
 
-**Nginx**
+### Nginx
 
 ```
 location / {
@@ -48,6 +48,16 @@ location ~ .php$ {
     fastcgi_index index.php;
     include fastcgi_params;
 }
+```
+
+### Lighttpd
+
+```
+url.rewrite-if-not-file = (
+    "/admin.*" => "/admin.php",
+    "/api.*"   => "/api.php",
+    "/.*"      => "/index.php"
+)
 ```
 
 ## SMTP
