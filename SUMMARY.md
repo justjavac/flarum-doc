@@ -6,6 +6,7 @@
     * [FAQ](preface/faq.md)
 * [使用 Flarum](using/README.md)
     * [安装](using/installation.md)
+    * [Adding Languages](installation.md)
     * [故障诊断](using/troubleshooting.md)
     * [使用 API](using/api.md)
 * [构建扩展](extend/README.md)
