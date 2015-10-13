@@ -36,9 +36,7 @@
 
 <a name="third-party-extensions"></a>
 
-## Third-Party Extensions
-
-##第三方扩展
+## 第三方扩展
 
 尽管从Flarum社区网站上下载的语言包会一般包括所有和Flarum捆绑的扩展的翻译，他们*不会*是一个在你安装的第三方扩展上也起作用的规则。由开发者来决定是否提供并维护他们的扩展的翻译。
 
