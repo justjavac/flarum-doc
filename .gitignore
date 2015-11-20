@@ -1,0 +1,7 @@
+/vendor
+/_book
+/node_modules
+composer.phar
+.DS_Store
+Thumbs.db
+sitemap.xml
