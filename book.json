@@ -1,8 +1,12 @@
 {
-    "plugins": ["disqus"],
+    "plugins": ["duoshuo", "-sharing", "-search", "baiduana"],
     "pluginsConfig": {
-        "disqus": {
-            "shortName": "flarum"
+        "duoshuo": {
+            "short_name":"flarum",
+            "theme": "default"
+        },
+        "baidu": {
+            "token": "7fffa9d31a719326deccb478b6cad2d9"
         }
     } 
 }
