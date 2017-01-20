@@ -6,11 +6,11 @@ Flarum 在 [GitHub](https://github.com/flarum/flarum) 上开放地开发。
 
 ## 目标
 
-Flarum 是 [esoTalk](http://esotalk.org) 和 [FluxBB](http://fluxbb.org) 结合的继承者。 它的目标是:
+Flarum 是 [esoTalk](http://esotalk.org) 和 [FluxBB](http://fluxbb.org) 的共同继承者。 它的目标是:
 
 - **快速、简单。** 没有混乱，没有膨胀，没有复杂的依赖关系。Flarum 使用 PHP 构建，因此它很容易部署。界面使用 Mithril，它是一个高性能 JavaScript 框架。
 
-- **漂亮、响应式。** Flarum 旨在以人为本，它有着精心的对于跨平台的、开箱即用的设计。界面布局使用了 LESS，所以主题风格只是小事一桩。
+- **漂亮、响应式。** Flarum 旨在以人为本，它有着精心的跨平台的、开箱即用的设计。界面布局使用了 LESS，所以主题风格只是小事一桩。
 
 - **强大、可扩展。** 为了满足您的社区需求，您可以定制、扩展和集成 Flarum。Flarum 的架构非常灵活，同时提供有全面的 API 和文档。
 
