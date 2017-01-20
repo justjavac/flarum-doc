@@ -2,7 +2,7 @@
 
 本文档翻译自 [Flarum 官方文档](http://flarum.org/docs/)。
 
-Flarum 是一款现代的，优雅的，简洁的，强大的论坛软件。Flarum 让在线交流变得更加轻松愉快。
+Flarum 是一款现代、优雅、简洁、强大的论坛软件。Flarum 让在线交流变得更加轻松愉快。
 
 [开始阅读](http://flarum.org.cn/docs/)
 
@@ -12,34 +12,37 @@ Flarum 是一款现代的，优雅的，简洁的，强大的论坛软件。Flar
 
 本文档源码托管在：https://github.com/justjavac/flarum-doc
 
-## 贡献者（及翻译进度）
+## 目录及翻译者
 
-* 前言
-  * 介紹 100% [@justjavac](https://github.com/justjavac)
-  * 贡献 [@ttnl](https://github.com/ttnl)
-  * FAQ 100% [@ttnl](https://github.com/ttnl)
-* 使用Flarum
-  * 安装 100% [@justjavac](https://github.com/justjavac)
-  * 添加语言 100% [@imcaffrey](https://github.com/imcaffrey)
-  * 故障诊断 100% [@justjavac](https://github.com/justjavac)
-  * 使用 API 100% [@justjavac](https://github.com/justjavac)
-* 构建扩展
-  * 介绍 100% [@theFool32](https://github.com/theFool32)
-  * 打包 100% [@theFool32](https://github.com/theFool32)
-  * 扩展域 100% [@ttnl](https://github.com/ttnl)
-  * 扩展 API 100% [@ttnl](https://github.com/ttnl)
-  * 扩展客户端 100% [@oott123](https://github.com/oott123)
-  * 主题 100% [@Seevil](https://github.com/Seevil)
-  * 国际化
-  * 分发 100% [@ttnl](https://github.com/ttnl)
-  * 管理
-  * 格式化
-  * 通知
-  * 帖子
-  * 搜索
-* 翻译Flarum
-  * 介绍 
-  * 打包 
-  * 本地化 100% [@justjavac](https://github.com/justjavac)
-  * 升级 
-  * 分发 
+* [前言](preface/README.md)
+    * [介紹](preface/introduction.md) [@justjavac](https://github.com/justjavac)
+    * [贡献](preface/contributing.md) [@ttnl](https://github.com/ttnl)
+    * [FAQ](preface/faq.md) [@ttnl](https://github.com/ttnl)
+* [使用 Flarum](using/README.md)
+    * [安装](using/installation.md) [@justjavac](https://github.com/justjavac)
+    * [添加语言](using/languages.md)  [@imcaffrey](https://github.com/imcaffrey)
+    * [故障诊断](using/troubleshooting.md) [@justjavac](https://github.com/justjavac)
+    * [使用 API](using/api.md) [@justjavac](https://github.com/justjavac)
+* [构建扩展](extend/README.md)
+    * [介绍](extend/introduction.md) [@theFool32](https://github.com/theFool32)
+    * [打包](extend/packaging.md) [@theFool32](https://github.com/theFool32)
+    * [扩展域](extend/domain.md) [@ttnl](https://github.com/ttnl)
+    * [扩展 API](extend/api.md) [@ttnl](https://github.com/ttnl)
+    * [扩展客户端](extend/client.md) [@oott123](https://github.com/oott123)
+    * [主题](extend/themes.md) [@Seevil](https://github.com/Seevil)
+    * [国际化](extend/internationalization.md)
+    * [分发](extend/distribution.md) [@ttnl](https://github.com/ttnl)
+    * [管理](extend/admin.md)
+    * [格式化](extend/formatting.md)
+    * [通知](extend/notifications.md)
+    * [帖子](extend/posts.md)
+    * [搜索](extend/search.md)
+* [翻译Flarum](translate/README.md)
+    * [介绍](translate/introduction.md)
+    * [打包](translate/packaging.md)
+    * [本地化](translate/localization.md) [@justjavac](https://github.com/justjavac)
+    * [升级](translate/updating.md)
+    * [分发](translate/distribution.md)
+    
+最后维护于 2017 年 1 月 20 日。
+Last updated by [@ttnl](https://github.com/momosaki)
