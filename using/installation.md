@@ -1,5 +1,10 @@
 # 安装
 
+## Beta 版软件
+请留意 Flarum 正处在 Beta 版软件阶段。这意味着：
+    - 它还有很多没完成的功能和 Bugs 🐛🐞 而且
+    - 某些时候 —— 或早或晚——它甚至可能崩溃！ 💥
+
 ## 系统需求
 
 - 服务器： Apache (需要支持 mod_rewrite)、Nginx、Lighttpd
