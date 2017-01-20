@@ -81,4 +81,5 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
 * `DELETE /api/tags/:id` - 删除一个标签
 
 > 译者：[@justjavac](https://github.com/justjavac)
+
 <!-- 17/1/21 Checked by ttnl -->
