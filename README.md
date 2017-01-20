@@ -43,6 +43,5 @@ Flarum 是一款现代、优雅、简洁、强大的论坛软件。Flarum 让在
     * [本地化](translate/localization.md) [@justjavac](https://github.com/justjavac)
     * [升级](translate/updating.md)
     * [分发](translate/distribution.md)
-    
-最后维护于 2017 年 1 月 20 日。
-Last updated by [@ttnl](https://github.com/momosaki)
+    
+本文档最后由 [@ttnl](https://github.com/ttnl) ([Github](https://github.com/momosaki)) 维护于 2017 年 1 月 20 日。
