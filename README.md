@@ -48,4 +48,4 @@ Flarum 是一款现代、优雅、简洁、强大的论坛软件。Flarum 让在
 
 
  > 本文档最后由 [@ttnl](https://github.com/ttnl) ([Github](https://github.com/momosaki)) 维护于 2017 年 1 月 20 日。
- <!-- 更改了一些措辞，更新了文章内容。 -->
+ <!-- 更改了一些措辞，更新了部分文章内容。 -->
