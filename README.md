@@ -21,7 +21,7 @@ Flarum 是一款现代、优雅、简洁、强大的论坛软件。Flarum 让在
 * [使用 Flarum](using/README.md)
     * [安装](using/installation.md) [@justjavac](https://github.com/justjavac)
     * [添加语言](using/languages.md)  [@imcaffrey](https://github.com/imcaffrey)
-    * [故障诊断](using/troubleshooting.md) [@justjavac](https://github.com/justjavac)
+    * [故障诊断](using/troubleshooting.md) [@ttnl](https://github.com/ttnl)
     * [使用 API](using/api.md) [@justjavac](https://github.com/justjavac)
 * [构建扩展](extend/README.md)
     * [介绍](extend/introduction.md) [@theFool32](https://github.com/theFool32)
@@ -48,3 +48,4 @@ Flarum 是一款现代、优雅、简洁、强大的论坛软件。Flarum 让在
 
 
  > 本文档最后由 [@ttnl](https://github.com/ttnl) ([Github](https://github.com/momosaki)) 维护于 2017 年 1 月 20 日。
+ <!-- 更改了一些措辞，更新了文章内容。 -->
