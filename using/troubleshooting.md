@@ -1,26 +1,19 @@
-# 故障诊断
+# 故障诊断和报告
 
-## 安装
+如果 Flarum 无法安装或者是没有按照预期运行，第一件需要做的事情就是*再次检查*你的环境是否达到了[系统要求](installation.md)。如果你缺失部分 Flarum 的依赖项（例如 PHP 的 `fileinfo` 扩展），你将需要先处理这些问题。
+接下来，你应该花上几分钟在[支持论坛](http://discuss.flarum.org/t/support)和[问题追踪器](https://github.com/flarum/core/issues)内检索。有可能有人已经汇报了这个问题，或者解决方案正在讨论，或者已经有解决方案。在检索过后，如果你仍然没有发现关于这个问题的信息的话，就是需要进行故障诊断的时候了。
 
-如果你在安装 Flarum 的过程中遇到了问题，先去论坛的 [Installation 标签](http://discuss.flarum.org/t/installation)看一下。 是否有人和你遇到了同样的问题! 如果没有找到，发布一个新话题，我们会尽力帮助你解决问题。
+## 第一步：开启调试模式。
 
-（译者注：在官方论坛提问时，请尽量使用英语，如果英语水平不好，可以选择在中文论坛提问。）
+在你处理前，你应该开启 Flarum 的调试模式。仅需使用文本编辑器打开 `config.php` 文件，将 `debug` 的值修改为 `true`。这样，当 Flarum 发生任何错误时，将会显示详细的错误消息。
 
-### 已知的问题
-
-* 目前安装程序没有进行输入验证，如果您输入了无效的管理用户名，安装程序将默默地失败。用户名只能包含字母、数字、破折号、下划线。
-* 如果 `flarum/storage/framework/views` 目录没有写入的权限，安装程序将崩溃。确保 PHP 对此目录有写权限。
-
-## 调试
-
-当你在使用论坛的过程中发生错误，要做的第一件事就是开启调试模式。使用文本编辑器打开 `config.php` 文件，将 `debug` 的值修改为 `true`。这样，当 Flarum 发生任何错误时，将会显示详细的错误消息。
-
-如果你访问网站时看到一个空白页面，将 PHP 配置文件 php.ini 的 `display_errors` 选项设置为 `On`。 或者，将以下代码添加到 `flarum/bootstrap.php` 文件的开头：
-
+如果你访问网站时看到一个空白页面，将 PHP 配置文件 **php.ini** 的 `display_errors` 选项设置为 `On`。 或者，你也可以将以下代码添加到 **flarum/bootstrap.php** 文件的开头：
 ```php
 ini_set('display_errors', 'On');
 ```
+*当错误修正后，一定要恢复这些选项！*
 
-**注：当错误修正后，一定要恢复这些选项！**
-
-> 译者：[@justjavac](https://github.com/justjavac)
+## 第二步：复现错误。
+试着让错误再发生一次。
+> Re-translated by [@ttnl](https://github.com/ttnl) 17/1/21.
+> First editon translated by @justjavac.

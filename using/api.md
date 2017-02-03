@@ -30,7 +30,7 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
 * `GET /api/forum` - 关于论坛的信息，包括 groups 和 tags
 * `PATCH /api/forum` - 更新论坛配置
 
-## discussion 讨论
+## Discussion 讨论
 
 * `GET /api/discussions` - 获取所有的讨论（默认排序规则为 `-time`）
     * `filter[q]` - 根据 username/gambits 过滤
@@ -39,7 +39,7 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
 * `PATCH /api/discussions/:id` - 更新一个讨论
 * `DELETE /api/discussions/:id` - 删除一个讨论
 
-## posts 帖子
+## Posts 帖子
 
 * `GET /api/posts` - 获取所有帖子
     * `filter[discussion]` - 根据 discussion ID 过滤
@@ -81,3 +81,5 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
 * `DELETE /api/tags/:id` - 删除一个标签
 
 > 译者：[@justjavac](https://github.com/justjavac)
+
+<!-- 17/1/21 Checked by ttnl -->
