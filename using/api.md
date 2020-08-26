@@ -23,7 +23,7 @@ API 使用基于令牌的身份验证机制。某些终端不需要身份验证�
 然后，您可以在后续的请求头中，包含此身份验证令牌:
 
     GET /api/forum HTTP/1.1
-    Authentication: Token YACub2KLfe8mfmHPcUKtt6t2SMJOGPXnZbqhc3nX
+    Authorization: Token YACub2KLfe8mfmHPcUKtt6t2SMJOGPXnZbqhc3nX
 
 ## 论坛
 
